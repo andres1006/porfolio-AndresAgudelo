@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { MailerSend, EmailParams, Sender, Recipient } from 'mailersend';
 import { MAILERSEND_API_KEY, SENDER_EMAIL, SENDER_NAME, RECIPIENT_EMAIL, RECIPIENT_NAME } from '@/lib/mailersend-config';
 
+// Configuración para indicar que esta ruta es dinámica
+export const dynamic = 'force-dynamic';
+
 // Interfaz para los datos del formulario de contacto
 interface ContactFormData {
     name: string;
