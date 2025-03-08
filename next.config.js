@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configuración para despliegue en Vercel
-  output: process.env.NODE_ENV === "production" ? undefined : "export",
-  distDir: process.env.NODE_ENV === "development" ? ".next" : ".next",
+  output: undefined,
+  distDir: ".next",
   eslint: {
     ignoreDuringBuilds: true,
   },
