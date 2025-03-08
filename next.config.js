@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Comentamos output: "export" para permitir rutas API
-  // output: "export",
-  distDir: process.env.NODE_ENV === "development" ? ".next" : "out",
+  // Configuración para despliegue en Vercel
+  output: process.env.NODE_ENV === "production" ? undefined : "export",
+  distDir: process.env.NODE_ENV === "development" ? ".next" : ".next",
   eslint: {
     ignoreDuringBuilds: true,
   },
