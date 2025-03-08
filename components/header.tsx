@@ -6,16 +6,16 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
-import { 
-  Menu, 
-  X, 
-  Home, 
-  User, 
-  Briefcase, 
-  Code, 
-  FileText, 
+import {
+  Menu,
+  X,
+  Home,
+  User,
+  Briefcase,
+  Code,
+  FileText,
   Mail,
-  ChevronDown
+  ChevronDown,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -28,11 +28,27 @@ import {
 const allNavItems = [
   { name: "Inicio", path: "/", icon: <Home className="h-4 w-4 mr-2" /> },
   { name: "Sobre Mí", path: "/about", icon: <User className="h-4 w-4 mr-2" /> },
-  { name: "Habilidades", path: "/skills", icon: <Code className="h-4 w-4 mr-2" /> },
-  { name: "Experiencia", path: "/experience", icon: <Briefcase className="h-4 w-4 mr-2" /> },
-  { name: "Proyectos", path: "/projects", icon: <Briefcase className="h-4 w-4 mr-2" /> },
+  {
+    name: "Habilidades",
+    path: "/skills",
+    icon: <Code className="h-4 w-4 mr-2" />,
+  },
+  {
+    name: "Experiencia",
+    path: "/experience",
+    icon: <Briefcase className="h-4 w-4 mr-2" />,
+  },
+  {
+    name: "Proyectos",
+    path: "/projects",
+    icon: <Briefcase className="h-4 w-4 mr-2" />,
+  },
   { name: "Blog", path: "/blog", icon: <FileText className="h-4 w-4 mr-2" /> },
-  { name: "Contacto", path: "/contact", icon: <Mail className="h-4 w-4 mr-2" /> },
+  {
+    name: "Contacto",
+    path: "/contact",
+    icon: <Mail className="h-4 w-4 mr-2" />,
+  },
 ];
 
 // Items principales que siempre se muestran en desktop
@@ -44,7 +60,7 @@ const mainNavItems = [
 
 // Items que van en el dropdown en desktop
 const dropdownNavItems = allNavItems.filter(
-  item => !mainNavItems.some(mainItem => mainItem.path === item.path)
+  (item) => !mainNavItems.some((mainItem) => mainItem.path === item.path)
 );
 
 export default function Header() {
@@ -71,7 +87,9 @@ export default function Header() {
     >
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold text-xl whitespace-nowrap">Andrés Agudelo</span>
+          <span className="font-bold text-xl whitespace-nowrap">
+            AndrésAgudelo.dev
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -102,7 +120,7 @@ export default function Header() {
             <DropdownMenuContent align="end" className="w-48">
               {dropdownNavItems.map((item) => (
                 <DropdownMenuItem key={item.path} asChild>
-                  <Link 
+                  <Link
                     href={item.path}
                     className={cn(
                       "flex items-center w-full",

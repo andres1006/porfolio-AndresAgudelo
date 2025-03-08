@@ -1,41 +1,156 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { CustomProgress } from "@/components/ui/custom-progress";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaAngular,
+  FaPython,
+  FaUserFriends,
+  FaComments,
+  FaPuzzlePiece,
+  FaClock,
+  FaUserTie,
+  FaRandom,
+  FaBrain,
+  FaPaintBrush,
+} from "react-icons/fa";
+import {
+  SiTypescript,
+  SiNextdotjs,
+  SiRemix,
+  SiGraphql,
+  SiAdobexd,
+  SiTailwindcss,
+  SiAdobeillustrator,
+} from "react-icons/si";
+import { BsLightningChargeFill } from "react-icons/bs";
 
 export default function SkillsPage() {
   const [selectedTab, setSelectedTab] = useState("technical");
 
   const technicalSkills = [
-    { name: "HTML5/CSS3", level: 95 },
-    { name: "JavaScript", level: 90 },
-    { name: "React.js", level: 90 },
-    { name: "Next.js", level: 70 },
-    { name: "Remix.js", level: 60 },
-    { name: "Angular.js", level: 70 },
-    { name: "GraphQL", level: 60 },
-    { name: "Node.js", level: 70 },
-    { name: "Adobe Illustrator", level: 80 },
-    { name: "Adobe XD", level: 80 },
+    {
+      name: "HTML5/CSS3",
+      level: 95,
+      icon: <FaHtml5 className="text-orange-500" />,
+    },
+    {
+      name: "Tailwind CSS",
+      level: 90,
+      icon: <SiTailwindcss className="text-blue-400" />,
+    },
+    {
+      name: "JavaScript",
+      level: 90,
+      icon: <FaJs className="text-yellow-400" />,
+    },
+    {
+      name: "TypeScript",
+      level: 80,
+      icon: <SiTypescript className="text-blue-600" />,
+    },
+    { name: "Python", level: 70, icon: <FaPython className="text-blue-500" /> },
+    {
+      name: "IA",
+      level: 75,
+      icon: <BsLightningChargeFill className="text-purple-500" />,
+    },
+    {
+      name: "React.js",
+      level: 90,
+      icon: <FaReact className="text-blue-400" />,
+    },
+    {
+      name: "Next.js",
+      level: 90,
+      icon: <SiNextdotjs className="text-black" />,
+    },
+    {
+      name: "Remix.js",
+      level: 70,
+      icon: <SiRemix className="text-violet-600" />,
+    },
+    {
+      name: "Angular.js",
+      level: 60,
+      icon: <FaAngular className="text-red-600" />,
+    },
+    {
+      name: "GraphQL",
+      level: 60,
+      icon: <SiGraphql className="text-pink-600" />,
+    },
+    {
+      name: "Node.js",
+      level: 70,
+      icon: <FaNodeJs className="text-green-600" />,
+    },
+    {
+      name: "Adobe Illustrator",
+      level: 80,
+      icon: <SiAdobeillustrator className="text-orange-600" />,
+    },
+    {
+      name: "Adobe XD",
+      level: 80,
+      icon: <SiAdobexd className="text-pink-500" />,
+    },
   ];
 
   const softSkills = [
-    { name: "Comunicación", level: 90 },
-    { name: "Trabajo en Equipo", level: 95 },
-    { name: "Resolución de Problemas", level: 90 },
-    { name: "Gestión del Tiempo", level: 85 },
-    { name: "Liderazgo", level: 80 },
-    { name: "Adaptabilidad", level: 90 },
-    { name: "Pensamiento Crítico", level: 85 },
-    { name: "Creatividad", level: 85 },
+    {
+      name: "Comunicación",
+      level: 90,
+      icon: <FaComments className="text-blue-500" />,
+    },
+    {
+      name: "Trabajo en Equipo",
+      level: 95,
+      icon: <FaUserFriends className="text-green-500" />,
+    },
+    {
+      name: "Resolución de Problemas",
+      level: 90,
+      icon: <FaPuzzlePiece className="text-yellow-500" />,
+    },
+    {
+      name: "Gestión del Tiempo",
+      level: 85,
+      icon: <FaClock className="text-red-500" />,
+    },
+    {
+      name: "Liderazgo",
+      level: 80,
+      icon: <FaUserTie className="text-purple-500" />,
+    },
+    {
+      name: "Adaptabilidad",
+      level: 90,
+      icon: <FaRandom className="text-indigo-500" />,
+    },
+    {
+      name: "Pensamiento Crítico",
+      level: 85,
+      icon: <FaBrain className="text-orange-500" />,
+    },
+    {
+      name: "Creatividad",
+      level: 85,
+      icon: <FaPaintBrush className="text-pink-500" />,
+    },
   ];
 
   const tools = [
+    "IA",
     "VS Code",
     "Git",
     "GitHub",
@@ -82,7 +197,8 @@ export default function SkillsPage() {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Habilidades & Experiencia</h1>
           <p className="text-muted-foreground">
-            Un resumen completo de mis habilidades técnicas, competencias y cualificaciones profesionales.
+            Un resumen completo de mis habilidades técnicas, competencias y
+            cualificaciones profesionales.
           </p>
         </div>
       </ScrollReveal>
@@ -90,7 +206,10 @@ export default function SkillsPage() {
       <ScrollReveal variant="slide" direction="up" delay={0.2}>
         <Tabs defaultValue="technical" className="max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="technical" onClick={() => setSelectedTab("technical")}>
+            <TabsTrigger
+              value="technical"
+              onClick={() => setSelectedTab("technical")}
+            >
               Habilidades Técnicas
             </TabsTrigger>
             <TabsTrigger value="soft" onClick={() => setSelectedTab("soft")}>
@@ -99,34 +218,57 @@ export default function SkillsPage() {
             <TabsTrigger value="tools" onClick={() => setSelectedTab("tools")}>
               Herramientas & Tecnologías
             </TabsTrigger>
-            <TabsTrigger value="certifications" onClick={() => setSelectedTab("certifications")}>
+            <TabsTrigger
+              value="certifications"
+              onClick={() => setSelectedTab("certifications")}
+            >
               Certificaciones
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="technical" className="mt-6">
-            <ScrollReveal variant="slide" direction="up" cascade cascadeDelay={0.05}>
+            <ScrollReveal
+              variant="slide"
+              direction="up"
+              cascade
+              cascadeDelay={0.05}
+            >
               {technicalSkills.map((skill, index) => (
                 <div key={index} className="space-y-2 mb-6">
-                  <div className="flex justify-between">
-                    <span className="font-medium">{skill.name}</span>
-                    <span className="text-muted-foreground">{skill.level}%</span>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{skill.icon}</span>
+                      <span className="font-medium">{skill.name}</span>
+                    </div>
+                    <span className="text-muted-foreground">
+                      {skill.level}%
+                    </span>
                   </div>
-                  <Progress value={skill.level} className="h-2" />
+                  <CustomProgress value={skill.level} />
                 </div>
               ))}
             </ScrollReveal>
           </TabsContent>
 
           <TabsContent value="soft" className="mt-6">
-            <ScrollReveal variant="slide" direction="up" cascade cascadeDelay={0.05}>
+            <ScrollReveal
+              variant="slide"
+              direction="up"
+              cascade
+              cascadeDelay={0.05}
+            >
               {softSkills.map((skill, index) => (
                 <div key={index} className="space-y-2 mb-6">
-                  <div className="flex justify-between">
-                    <span className="font-medium">{skill.name}</span>
-                    <span className="text-muted-foreground">{skill.level}%</span>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{skill.icon}</span>
+                      <span className="font-medium">{skill.name}</span>
+                    </div>
+                    <span className="text-muted-foreground">
+                      {skill.level}%
+                    </span>
                   </div>
-                  <Progress value={skill.level} className="h-2" />
+                  <CustomProgress value={skill.level} />
                 </div>
               ))}
             </ScrollReveal>
@@ -136,7 +278,11 @@ export default function SkillsPage() {
             <ScrollReveal variant="scale" cascade cascadeDelay={0.03}>
               <div className="flex flex-wrap gap-3">
                 {tools.map((tool, index) => (
-                  <Badge key={index} variant="secondary" className="text-sm py-1 px-3">
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="text-sm py-1 px-3"
+                  >
                     {tool}
                   </Badge>
                 ))}
@@ -147,10 +293,17 @@ export default function SkillsPage() {
           <TabsContent value="certifications" className="mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
-                <ScrollReveal key={index} variant="slide" direction={index % 2 === 0 ? "left" : "right"} delay={index * 0.1}>
+                <ScrollReveal
+                  key={index}
+                  variant="slide"
+                  direction={index % 2 === 0 ? "left" : "right"}
+                  delay={index * 0.1}
+                >
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="font-semibold text-lg mb-1">{cert.name}</h3>
+                      <h3 className="font-semibold text-lg mb-1">
+                        {cert.name}
+                      </h3>
                       <p className="text-muted-foreground text-sm mb-2">
                         {cert.issuer} • {cert.date}
                       </p>
@@ -196,10 +349,17 @@ export default function SkillsPage() {
                 ],
               },
             ].map((specialty, index) => (
-              <ScrollReveal key={index} variant="slide" direction="up" delay={0.6 + index * 0.1}>
+              <ScrollReveal
+                key={index}
+                variant="slide"
+                direction="up"
+                delay={0.6 + index * 0.1}
+              >
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">{specialty.title}</h3>
+                    <h3 className="font-semibold text-lg mb-4">
+                      {specialty.title}
+                    </h3>
                     <ul className="space-y-2 text-muted-foreground">
                       {specialty.items.map((item, itemIndex) => (
                         <li key={itemIndex}>• {item}</li>

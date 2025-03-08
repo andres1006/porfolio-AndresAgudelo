@@ -9,16 +9,38 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { WhatsAppButton } from "@/components/ui/whatsapp-button";
+import emailjs from "@emailjs/browser";
+import {
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  EMAILJS_PUBLIC_KEY,
+} from "@/lib/emailjs-config";
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
-  email: z.string().email({ message: "Por favor ingresa un correo electrónico válido." }),
-  subject: z.string().min(5, { message: "El asunto debe tener al menos 5 caracteres." }),
-  message: z.string().min(10, { message: "El mensaje debe tener al menos 10 caracteres." }),
+  name: z
+    .string()
+    .min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
+  email: z
+    .string()
+    .email({ message: "Por favor ingresa un correo electrónico válido." }),
+  subject: z
+    .string()
+    .min(5, { message: "El asunto debe tener al menos 5 caracteres." }),
+  message: z
+    .string()
+    .min(10, { message: "El mensaje debe tener al menos 10 caracteres." }),
 });
 
 export default function ContactPage() {
@@ -36,15 +58,44 @@ export default function ContactPage() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("¡Mensaje enviado!", {
-        description: "Gracias por tu mensaje. Me pondré en contacto contigo pronto.",
+
+    // Enviar correo electrónico usando la API
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        setIsSubmitting(false);
+
+        if (response.ok && data.success) {
+          toast.success("¡Mensaje enviado con éxito!", {
+            description:
+              "Gracias por tu mensaje. Me pondré en contacto contigo pronto.",
+            duration: 5000,
+          });
+          form.reset();
+        } else {
+          toast.error("Error al enviar el mensaje", {
+            description:
+              data.details ||
+              "Por favor, intenta nuevamente o contáctame directamente por WhatsApp.",
+            duration: 8000,
+          });
+        }
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+
+        toast.error("Error al enviar el mensaje", {
+          description:
+            "Hubo un problema de conexión. Por favor, intenta nuevamente o contáctame directamente por WhatsApp.",
+          duration: 5000,
+        });
       });
-      form.reset();
-    }, 1500);
   }
 
   return (
@@ -53,7 +104,8 @@ export default function ContactPage() {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Contacto</h1>
           <p className="text-muted-foreground">
-            ¿Tienes alguna pregunta o quieres trabajar juntos? ¡No dudes en contactarme!
+            ¿Tienes alguna pregunta o quieres trabajar juntos? ¡No dudes en
+            contactarme!
           </p>
         </div>
       </ScrollReveal>
@@ -66,7 +118,9 @@ export default function ContactPage() {
                 <Mail className="h-6 w-6 mt-1 text-primary" />
                 <div>
                   <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-muted-foreground">andresagudelo1006@gmail.com</p>
+                  <p className="text-muted-foreground">
+                    andresagudelo1006@gmail.com
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -84,18 +138,28 @@ export default function ContactPage() {
                 <MapPin className="h-6 w-6 mt-1 text-primary" />
                 <div>
                   <h3 className="font-semibold mb-1">Ubicación</h3>
-                  <p className="text-muted-foreground">Manizales, Caldas, Colombia</p>
+                  <p className="text-muted-foreground">
+                    Manizales, Caldas, Colombia
+                  </p>
                 </div>
               </CardContent>
             </Card>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal variant="slide" direction="right" delay={0.4} className="md:col-span-2">
+        <ScrollReveal
+          variant="slide"
+          direction="right"
+          delay={0.4}
+          className="md:col-span-2"
+        >
           <Card>
             <CardContent className="p-6">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
@@ -131,7 +195,10 @@ export default function ContactPage() {
                       <FormItem>
                         <FormLabel>Asunto</FormLabel>
                         <FormControl>
-                          <Input placeholder="Asunto de tu mensaje" {...field} />
+                          <Input
+                            placeholder="Asunto de tu mensaje"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -154,7 +221,11 @@ export default function ContactPage() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -167,6 +238,13 @@ export default function ContactPage() {
                       </>
                     )}
                   </Button>
+
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-muted-foreground mb-2">
+                      O contáctame directamente por WhatsApp
+                    </p>
+                    <WhatsAppButton form={form} />
+                  </div>
                 </form>
               </Form>
             </CardContent>
@@ -183,22 +261,32 @@ export default function ContactPage() {
                 {[
                   {
                     question: "¿Qué servicios ofreces?",
-                    answer: "Ofrezco servicios de desarrollo frontend, diseño UI/UX, consultoría técnica y desarrollo de aplicaciones web y móviles con React y React Native.",
+                    answer:
+                      "Ofrezco servicios de desarrollo frontend, diseño UI/UX, consultoría técnica y desarrollo de aplicaciones web y móviles con React y React Native.",
                   },
                   {
-                    question: "¿Cuál es tu tiempo típico de entrega para un proyecto?",
-                    answer: "Los tiempos varían según el alcance y la complejidad. Un sitio web simple puede tomar 2-4 semanas, mientras que una aplicación compleja podría llevar varios meses.",
+                    question:
+                      "¿Cuál es tu tiempo típico de entrega para un proyecto?",
+                    answer:
+                      "Los tiempos varían según el alcance y la complejidad. Un sitio web simple puede tomar 2-4 semanas, mientras que una aplicación compleja podría llevar varios meses.",
                   },
                   {
                     question: "¿Trabajas con clientes internacionales?",
-                    answer: "Sí, trabajo con clientes de todo el mundo. La colaboración remota es una parte fundamental de mi flujo de trabajo.",
+                    answer:
+                      "Sí, trabajo con clientes de todo el mundo. La colaboración remota es una parte fundamental de mi flujo de trabajo.",
                   },
                   {
                     question: "¿Cuál es tu estructura de precios?",
-                    answer: "Ofrezco opciones de precios basados en proyectos y por hora. Cada proyecto se cotiza individualmente según los requisitos y el alcance.",
+                    answer:
+                      "Ofrezco opciones de precios basados en proyectos y por hora. Cada proyecto se cotiza individualmente según los requisitos y el alcance.",
                   },
                 ].map((faq, index) => (
-                  <ScrollReveal key={index} variant="slide" direction="up" delay={0.7 + index * 0.1}>
+                  <ScrollReveal
+                    key={index}
+                    variant="slide"
+                    direction="up"
+                    delay={0.7 + index * 0.1}
+                  >
                     <div className="border-b pb-4 last:border-0 last:pb-0">
                       <h3 className="font-semibold mb-2">{faq.question}</h3>
                       <p className="text-muted-foreground">{faq.answer}</p>

@@ -16,84 +16,169 @@ export default function ProjectsPage() {
 
   const projects = [
     {
-      id: "health-platform",
-      title: "Plataforma de Salud",
+      id: "porfolio-andresagudelo",
+      title: "Portafolio Personal",
       description:
-        "Sistema para el sector salud desarrollado con React y Electron, facilitando la gestión de pacientes y citas médicas.",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "Sitio web personal desarrollado con Next.js y TypeScript para mostrar proyectos y experiencia profesional.",
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "web",
-      technologies: ["React", "Electron", "Redux", "Material UI"],
-      demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/example/health-platform",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
+      demoUrl: "https://andresagudelo.dev",
+      githubUrl: "https://github.com/andres1006/porfolio-AndresAgudelo",
       featured: true,
     },
     {
-      id: "dashboard",
-      title: "Dashboard Financiero",
+      id: "webapp-heating-shop",
+      title: "Tienda de Calefacción",
       description:
-        "Interfaz interactiva para monitoreo y visualización de métricas financieras con React y gráficos avanzados.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "Aplicación web para una tienda de productos de calefacción con funcionalidades de e-commerce.",
+      image:
+        "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "web",
-      technologies: ["React", "D3.js", "Firebase", "Material UI"],
-      demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/example/dashboard",
+      technologies: ["TypeScript", "React", "Node.js", "MongoDB"],
+      demoUrl: "https://heating-shop.example.com",
+      githubUrl: "https://github.com/andres1006/webapp-heating-shop",
       featured: true,
     },
     {
-      id: "mobile-app",
-      title: "App de Seguimiento Fitness",
+      id: "zenith-solution",
+      title: "Zenith Solution",
       description:
-        "Aplicación móvil para seguimiento de entrenamientos, nutrición y métricas de salud con recomendaciones personalizadas.",
-      image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "Plataforma de soluciones empresariales con dashboard administrativo y gestión de usuarios.",
+      image:
+        "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["TypeScript", "React", "Redux", "Express"],
+      demoUrl: "https://zenith-solutions.example.com",
+      githubUrl: "https://github.com/andres1006/zenith-solution",
+      featured: true,
+    },
+    {
+      id: "dashboard-next",
+      title: "Dashboard Next.js",
+      description:
+        "Panel de administración moderno desarrollado con Next.js y TypeScript con autenticación y visualización de datos.",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Chart.js"],
+      demoUrl: "https://dashboard.example.com",
+      githubUrl: "https://github.com/andres1006/dashboard-next",
+      featured: false,
+    },
+    {
+      id: "landingmiti",
+      title: "Landing Page Miti",
+      description:
+        "Página de aterrizaje desarrollada con Astro para optimizar rendimiento y SEO.",
+      image:
+        "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["Astro", "JavaScript", "CSS", "HTML"],
+      demoUrl: "https://miti.example.com",
+      githubUrl: "https://github.com/andres1006/landingMiti",
+      featured: false,
+    },
+    {
+      id: "ecommerce-air",
+      title: "E-commerce Astro",
+      description:
+        "Plataforma de comercio electrónico con componentes reutilizables desarrollada con Astro.",
+      image:
+        "https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["Astro", "SCSS", "JavaScript", "API REST"],
+      demoUrl: "https://ecommerce.example.com",
+      githubUrl: "https://github.com/andres1006/ecommerce-air",
+      featured: false,
+    },
+    {
+      id: "poc-realstate-reactnative",
+      title: "App Inmobiliaria",
+      description:
+        "Aplicación móvil para búsqueda y gestión de propiedades inmobiliarias desarrollada con React Native.",
+      image:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "mobile",
-      technologies: ["React Native", "Redux", "Firebase", "Health API"],
+      technologies: ["React Native", "TypeScript", "Firebase", "Maps API"],
       demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/example/fitness-app",
+      githubUrl: "https://github.com/andres1006/POC-realState-ReactNative",
       featured: false,
     },
     {
-      id: "ai-tool",
-      title: "Generador de Contenido IA",
+      id: "petgram",
+      title: "Petgram",
       description:
-        "Herramienta que utiliza machine learning para generar textos de marketing, posts de blog y contenido para redes sociales.",
-      image: "https://images.unsplash.com/photo-1677442135968-6144fc1c8d14?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "ai",
-      technologies: ["Python", "TensorFlow", "OpenAI API", "Flask"],
-      demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/example/ai-content",
+        "Aplicación similar a Instagram pero enfocada en mascotas, desarrollada con React.",
+      image:
+        "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["React", "JavaScript", "GraphQL", "Styled Components"],
+      demoUrl: "https://petgram.example.com",
+      githubUrl: "https://github.com/andres1006/petgram",
       featured: false,
     },
     {
-      id: "blockchain",
-      title: "Exchange Descentralizado",
+      id: "aura-health-system",
+      title: "Sistema de Salud Aura",
       description:
-        "Plataforma de intercambio basada en blockchain para trading de criptomonedas y tokens sin intermediarios.",
-      image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "blockchain",
-      technologies: ["Solidity", "Web3.js", "React", "Ethereum"],
+        "Conjunto de aplicaciones para gestión de pacientes y datos médicos, incluyendo frontend, servicios y automatización.",
+      image:
+        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["JavaScript", "C++", "MATLAB", "MongoDB"],
+      demoUrl: "https://aura-health.example.com",
+      githubUrl: "https://github.com/andres1006/auraServices",
+      featured: true,
+    },
+    {
+      id: "qt-mongo-aura",
+      title: "Integración Qt-MongoDB",
+      description:
+        "Aplicación de escritorio en C++ que sube información de pacientes a MongoDB desde una interfaz Qt.",
+      image:
+        "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "desktop",
+      technologies: ["C++", "Qt", "MongoDB", "JSON"],
       demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/example/dex",
+      githubUrl: "https://github.com/andres1006/qt_mongo_aura",
       featured: false,
     },
     {
-      id: "game",
-      title: "Juego Educativo",
+      id: "camerascanqr",
+      title: "Escáner QR",
       description:
-        "Juego interactivo diseñado para enseñar conceptos de programación a principiantes a través de puzzles y desafíos.",
-      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "game",
-      technologies: ["Unity", "C#", "WebGL", "Firebase"],
-      demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/example/edu-game",
+        "Aplicación para escanear códigos QR utilizando la cámara del dispositivo.",
+      image:
+        "https://images.unsplash.com/photo-1595079676339-1534801ad6cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["JavaScript", "HTML5", "CSS", "Camera API"],
+      demoUrl: "https://qr-scanner.example.com",
+      githubUrl: "https://github.com/andres1006/camerascanqr",
+      featured: false,
+    },
+    {
+      id: "imakinacion",
+      title: "Imakinación",
+      description:
+        "Plataforma creativa para diseño y generación de contenido visual.",
+      image:
+        "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["JavaScript", "Canvas API", "Node.js", "Express"],
+      demoUrl: "https://imakinacion.example.com",
+      githubUrl: "https://github.com/andres1006/imakinacion",
       featured: false,
     },
   ];
 
-  const filteredProjects = filter === "all" 
-    ? projects 
-    : filter === "featured" 
-      ? projects.filter(project => project.featured) 
-      : projects.filter(project => project.category === filter);
+  const filteredProjects =
+    filter === "all"
+      ? projects
+      : filter === "featured"
+      ? projects.filter((project) => project.featured)
+      : projects.filter((project) => project.category === filter);
 
   return (
     <div className="container py-12">
@@ -121,14 +206,14 @@ export default function ProjectsPage() {
             <TabsTrigger value="mobile" onClick={() => setFilter("mobile")}>
               Móvil
             </TabsTrigger>
-            <TabsTrigger value="ai" onClick={() => setFilter("ai")}>
-              IA
+            <TabsTrigger value="desktop" onClick={() => setFilter("desktop")}>
+              Escritorio
             </TabsTrigger>
-            <TabsTrigger value="blockchain" onClick={() => setFilter("blockchain")}>
-              Blockchain
+            <TabsTrigger value="github" onClick={() => setFilter("github")}>
+              GitHub
             </TabsTrigger>
-            <TabsTrigger value="game" onClick={() => setFilter("game")}>
-              Juegos
+            <TabsTrigger value="all" onClick={() => setFilter("all")}>
+              Ver Todos
             </TabsTrigger>
           </TabsList>
 
@@ -164,7 +249,7 @@ export default function ProjectsPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="ai" className="mt-6">
+          <TabsContent value="desktop" className="mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project, index) => (
                 <ProjectCard key={index} project={project} index={index} />
@@ -172,15 +257,7 @@ export default function ProjectsPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="blockchain" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={index} project={project} index={index} />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="game" className="mt-6">
+          <TabsContent value="github" className="mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project, index) => (
                 <ProjectCard key={index} project={project} index={index} />
@@ -189,17 +266,28 @@ export default function ProjectsPage() {
           </TabsContent>
         </Tabs>
       </ScrollReveal>
+
+      <GitHubRepositories />
+
+      <div className="flex justify-center mt-8">
+        <Button asChild size="lg" variant="default">
+          <Link
+            href="https://github.com/andres1006?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github className="h-5 w-5 mr-2" /> Ver todos los repositorios en
+            GitHub
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index }: { project: any; index: number }) {
   return (
-    <ScrollReveal
-      variant="slide"
-      direction="up"
-      delay={index * 0.1}
-    >
+    <ScrollReveal variant="slide" direction="up" delay={index * 0.1}>
       <Card className="overflow-hidden h-full flex flex-col">
         <div className="relative h-48 w-full">
           <Image
@@ -216,9 +304,11 @@ function ProjectCard({ project, index }) {
         </div>
         <CardContent className="p-6 flex-1 flex flex-col">
           <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-          <p className="text-muted-foreground mb-4 flex-1">{project.description}</p>
+          <p className="text-muted-foreground mb-4 flex-1">
+            {project.description}
+          </p>
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.technologies.map((tech, techIndex) => (
+            {project.technologies.map((tech: string, techIndex: number) => (
               <Badge key={techIndex} variant="outline">
                 {tech}
               </Badge>
@@ -226,12 +316,20 @@ function ProjectCard({ project, index }) {
           </div>
           <div className="flex gap-3 mt-auto">
             <Button asChild size="sm" variant="outline">
-              <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ExternalLink className="h-4 w-4 mr-2" /> Demo
               </Link>
             </Button>
             <Button asChild size="sm" variant="outline">
-              <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="h-4 w-4 mr-2" /> Código
               </Link>
             </Button>
@@ -244,5 +342,201 @@ function ProjectCard({ project, index }) {
         </CardContent>
       </Card>
     </ScrollReveal>
+  );
+}
+
+function GitHubRepositories() {
+  const repositories = [
+    {
+      name: "porfolio-AndresAgudelo",
+      url: "https://github.com/andres1006/porfolio-AndresAgudelo",
+      description: "Portafolio personal desarrollado con Next.js",
+    },
+    {
+      name: "webapp-heating-shop",
+      url: "https://github.com/andres1006/webapp-heating-shop",
+      description: "Tienda web de productos de calefacción",
+    },
+    {
+      name: "zenith-solution",
+      url: "https://github.com/andres1006/zenith-solution",
+      description: "Plataforma de soluciones empresariales",
+    },
+    {
+      name: "dashboard-next",
+      url: "https://github.com/andres1006/dashboard-next",
+      description: "Dashboard administrativo con Next.js",
+    },
+    {
+      name: "landingMiti",
+      url: "https://github.com/andres1006/landingMiti",
+      description: "Landing page desarrollada con Astro",
+    },
+    {
+      name: "od-mariana-henao-web",
+      url: "https://github.com/andres1006/od-mariana-henao-web",
+      description: "Sitio web para odontología",
+    },
+    {
+      name: "ecommerce-air",
+      url: "https://github.com/andres1006/ecommerce-air",
+      description: "Componentes de e-commerce con Astro",
+    },
+    {
+      name: "POC-realState",
+      url: "https://github.com/andres1006/POC-realState",
+      description: "Prueba de concepto para aplicación inmobiliaria",
+    },
+    {
+      name: "POC-realState-ReactNative",
+      url: "https://github.com/andres1006/POC-realState-ReactNative",
+      description: "Versión móvil de la aplicación inmobiliaria",
+    },
+    {
+      name: "imakinacion",
+      url: "https://github.com/andres1006/imakinacion",
+      description: "Plataforma creativa para diseño",
+    },
+    {
+      name: "auraServices",
+      url: "https://github.com/andres1006/auraServices",
+      description: "Servicios backend para sistema de salud",
+    },
+    {
+      name: "apiparqueaderoprof1",
+      url: "https://github.com/andres1006/apiparqueaderoprof1",
+      description: "API para sistema de parqueadero",
+    },
+    {
+      name: "parqueaderoangular",
+      url: "https://github.com/andres1006/parqueaderoangular",
+      description: "Frontend para sistema de parqueadero",
+    },
+    {
+      name: "camerascanqr",
+      url: "https://github.com/andres1006/camerascanqr",
+      description: "Aplicación para escanear códigos QR",
+    },
+    {
+      name: "commands-git",
+      url: "https://github.com/andres1006/commands-git",
+      description: "Guía de comandos Git",
+    },
+    {
+      name: "qt_mongo_aura",
+      url: "https://github.com/andres1006/qt_mongo_aura",
+      description: "Integración de Qt con MongoDB",
+    },
+    {
+      name: "auraOctavePaciente",
+      url: "https://github.com/andres1006/auraOctavePaciente",
+      description: "Software de Octave para pacientes",
+    },
+    {
+      name: "AuraFrontend",
+      url: "https://github.com/andres1006/AuraFrontend",
+      description: "Frontend para sistema de salud Aura",
+    },
+    {
+      name: "practicaFront",
+      url: "https://github.com/andres1006/practicaFront",
+      description: "Prácticas de desarrollo frontend",
+    },
+    {
+      name: "cleanTextSDC",
+      url: "https://github.com/andres1006/cleanTextSDC",
+      description: "Utilidad para limpieza de texto",
+    },
+    {
+      name: "auraAutomator",
+      url: "https://github.com/andres1006/auraAutomator",
+      description: "Automatización para sistema Aura",
+    },
+    {
+      name: "parqueadero",
+      url: "https://github.com/andres1006/parqueadero",
+      description: "Sistema de gestión de parqueadero",
+    },
+    {
+      name: "pythonAura",
+      url: "https://github.com/andres1006/pythonAura",
+      description: "Componentes Python para sistema Aura",
+    },
+    {
+      name: "clasificadoresDiferenciales",
+      url: "https://github.com/andres1006/clasificadoresDiferenciales",
+      description: "Clasificadores diferenciales para análisis",
+    },
+    {
+      name: "auraClasificadores",
+      url: "https://github.com/andres1006/auraClasificadores",
+      description: "Clasificadores para sistema Aura",
+    },
+    {
+      name: "qt_pdf_aura",
+      url: "https://github.com/andres1006/qt_pdf_aura",
+      description: "Generador de PDF en C desde Qt",
+    },
+    {
+      name: "auraPacientesControl",
+      url: "https://github.com/andres1006/auraPacientesControl",
+      description: "Control de pacientes para sistema Aura",
+    },
+    {
+      name: "petgram",
+      url: "https://github.com/andres1006/petgram",
+      description: "Aplicación similar a Instagram para mascotas",
+    },
+    {
+      name: "player.js",
+      url: "https://github.com/andres1006/player.js",
+      description: "Control de video y audio embebido",
+    },
+  ];
+
+  return (
+    <div className="mt-20">
+      <ScrollReveal variant="fade" direction="up">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Repositorios en GitHub</h2>
+          <p className="text-muted-foreground">
+            Lista completa de mis repositorios públicos en GitHub
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal variant="slide" direction="up" delay={0.2}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {repositories.map((repo, index) => (
+            <ScrollReveal
+              key={index}
+              variant="slide"
+              direction="up"
+              delay={index * 0.05}
+            >
+              <Card className="h-full flex flex-col">
+                <CardContent className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-semibold mb-2">{repo.name}</h3>
+                  <p className="text-muted-foreground mb-4 flex-1">
+                    {repo.description || "Sin descripción disponible"}
+                  </p>
+                  <div className="mt-auto">
+                    <Button asChild size="sm" variant="outline">
+                      <Link
+                        href={repo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4 mr-2" /> Ver en GitHub
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
+          ))}
+        </div>
+      </ScrollReveal>
+    </div>
   );
 }

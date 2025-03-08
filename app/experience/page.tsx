@@ -75,7 +75,7 @@ export default function ExperiencePage() {
     },
   ];
 
-  const getIcon = ( type) => {
+  const getIcon = (type: string) => {
     switch (type) {
       case "work":
         return <Briefcase className="h-6 w-6" />;
@@ -128,9 +128,12 @@ export default function ExperiencePage() {
                     <CardContent className="p-6">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                         <div>
-                          <h3 className="text-xl font-bold">{experience.title}</h3>
+                          <h3 className="text-xl font-bold">
+                            {experience.title}
+                          </h3>
                           <p className="text-muted-foreground">
-                            {experience.company} • {experience.location} • {experience.period}
+                            {experience.company} • {experience.location} •{" "}
+                            {experience.period}
                           </p>
                         </div>
                         <Badge
@@ -143,11 +146,11 @@ export default function ExperiencePage() {
                               : "outline"
                           }
                         >
-                          {experience.type === "work" 
-                            ? "Trabajo" 
-                            : experience.type === "education" 
-                              ? "Educación" 
-                              : "Premio"}
+                          {experience.type === "work"
+                            ? "Trabajo"
+                            : experience.type === "education"
+                            ? "Educación"
+                            : "Premio"}
                         </Badge>
                       </div>
                       <p className="mb-4">{experience.description}</p>
