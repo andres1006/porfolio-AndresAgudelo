@@ -5,6 +5,18 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sobre Mí | Desarrollador Frontend",
+  description:
+    "Conoce más sobre Andrés Agudelo, desarrollador frontend con experiencia en React, Next.js y React Native. Descubre mi trayectoria profesional y habilidades técnicas.",
+  openGraph: {
+    title: "Sobre Andrés Agudelo | Desarrollador Frontend",
+    description:
+      "Conoce más sobre mi trayectoria profesional, habilidades técnicas y pasión por el desarrollo frontend.",
+  },
+};
 
 export default function AboutPage() {
   const strengths = [
