@@ -257,13 +257,13 @@ export default function Home() {
               {
                 title: "Controlsoft",
                 description:
-                  "Sistema de gestión de control de documentos y procesos de entradas y salidas de barcos puertos.",
+                  "Software de gestión integral para Controlsoft, diseñado para automatizar y optimizar sus procesos administrativos y operativos. Implementé funcionalidades como la gestión de proyectos, tareas, documentos, clientes y recursos humanos, mejorando la eficiencia, reduciendo costos operativos y facilitando la toma de decisiones estratégicas.",
                 image:
-                  "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 link: "/projects/controlsoft",
               },
               {
-                title: "Proyecto Miti Miti",
+                title: "Miti Miti",
                 description:
                   "Landing page moderna y optimizada para SEO desarrollada con Astro. Enfocada en maximizar la conversión y proporcionar una experiencia de usuario excepcional.",
                 image:
