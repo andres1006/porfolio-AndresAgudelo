@@ -21,9 +21,32 @@ export default function ExperiencePage() {
       location: "CDMX (México)",
       period: "2021 - Presente",
       description:
-        "Desarrollo y ayudo a disminuir la brecha entre diseñadores y desarrolladores frontends a nivel de diseño UI/UX. Me desenvuelvo como desarrollador frontend con React js (90%), React native (80%), redux (80%), Material UI (90%) y otras librerías importantes para este framework.",
-      skills: ["React", "React Native", "Redux", "Material UI", "UI/UX"],
+        "Lidero el desarrollo y la implementación de soluciones frontend innovadoras y escalables, contribuyendo activamente a la reducción de la brecha entre diseñadores y desarrolladores. Esto se logra mediante la optimización del diseño UI/UX, asegurando una colaboración efectiva y una entrega de productos de alta calidad. Me desempeño como desarrollador frontend senior, utilizando un conjunto de tecnologías avanzadas que incluyen React.js, React Native, Redux, Material UI y otras librerías esenciales. Mi enfoque se centra en el desarrollo de aplicaciones web y móviles de alto rendimiento, con una excelente experiencia de usuario y una arquitectura robusta.",
+      skills: [
+        "React",
+        "React Native",
+        "Redux",
+        "Material UI",
+        "UI/UX",
+        "Next.js",
+      ],
       type: "work",
+    },
+    {
+      title: "Desarrollador Frontend",
+      company: "Controlsoft",
+      location: "Manizales (Colombia)",
+      period: "Diciembre 2024 - 2025",
+      description:
+        "Software de gestión integral para Controlsoft, diseñado para automatizar y optimizar sus procesos administrativos y operativos. Implementé funcionalidades como la gestión de proyectos, tareas, documentos, clientes y recursos humanos, mejorando la eficiencia, reduciendo costos operativos y facilitando la toma de decisiones estratégicas.",
+      skills: [
+        "Angular",
+        "API REST",
+        "MySQL",
+        "Gestión de Proyectos",
+        "Frontend",
+      ],
+      type: "Freelance",
     },
     {
       title: "Desarrollador Frontend",
@@ -31,8 +54,13 @@ export default function ExperiencePage() {
       location: "Manizales (Colombia)",
       period: "2019 - 2021",
       description:
-        "Lideré equipo de desarrollo para proyecto dirigido al sector salud. Me desempeñé como desarrollador frontend con React js (80%) y Electron (70%).",
-      skills: ["React", "Electron", "Liderazgo de Equipo"],
+        "Lideré un equipo de desarrollo multidisciplinario en la concepción, diseño y creación de un proyecto innovador y de alto impacto dirigido al sector salud. Gestioné eficazmente el ciclo de vida completo del desarrollo de software, desde la planificación y el diseño hasta la implementación, las pruebas y el despliegue. Desarrollé e implementé soluciones frontend robustas y eficientes utilizando React.js y Electron. Creé interfaces de usuario intuitivas, accesibles y visualmente atractivas para aplicaciones de escritorio, garantizando una experiencia de usuario óptima y una alta usabilidad.",
+      skills: [
+        "React",
+        "Electron",
+        "Liderazgo de Equipo",
+        "Gestión de Proyectos",
+      ],
       type: "work",
     },
     {
@@ -41,8 +69,8 @@ export default function ExperiencePage() {
       location: "México",
       period: "2020 - 2020",
       description:
-        "Realicé pruebas y ajustes a funcionalidades del frontend ya desarrolladas. Ayudé a la mejora constante de la interfaz gráfica y la experiencia de usuario.",
-      skills: ["Frontend", "UI/UX", "Testing"],
+        "Ejecuté pruebas exhaustivas y detalladas de funcionalidades frontend existentes, identificando y resolviendo errores críticos y mejorando la estabilidad general de la aplicación web. Realicé ajustes precisos y optimizaciones de código, garantizando la calidad, el rendimiento y la confiabilidad del software. Colaboré activamente con el equipo de diseño y desarrollo en la mejora continua de la interfaz gráfica y la experiencia del usuario. Implementé soluciones creativas e innovadoras que optimizaron la usabilidad, la accesibilidad y el atractivo visual de la plataforma, resultando en una mayor satisfacción del usuario y una mejor adopción del producto.",
+      skills: ["Frontend", "UI/UX", "Testing", "Optimización"],
       type: "work",
     },
     {
@@ -51,8 +79,14 @@ export default function ExperiencePage() {
       location: "Manizales (Colombia)",
       period: "2018 - 2018",
       description:
-        "Realicé pruebas y ajustes a funcionalidades como enviar correos de verificación, tokenizaciones, respuestas de endpoints, etc.",
-      skills: ["Backend", "APIs", "Autenticación"],
+        "Participé activamente en el diseño, desarrollo y mantenimiento de la API para una plataforma, implementando soluciones robustas, escalables y seguras. Contribuí al desarrollo de la arquitectura, la lógica y la funcionalidad de la API, asegurando su correcto funcionamiento y su integración con otros sistemas. Desarrollé e implementé pruebas unitarias e integrales exhaustivas, garantizando la calidad y la cobertura del código. Realicé ajustes precisos y optimizaciones de código, resolviendo errores críticos y mejorando el rendimiento y la eficiencia de la API. Implementé funcionalidades clave como el envío de correos de verificación, la tokenización de usuarios y la optimización de respuestas de endpoints, asegurando la seguridad, la integridad y el rendimiento de la API.",
+      skills: [
+        "Backend",
+        "APIs",
+        "Autenticación",
+        "Pruebas Unitarias",
+        "Optimización",
+      ],
       type: "work",
     },
     {
@@ -83,6 +117,8 @@ export default function ExperiencePage() {
         return <GraduationCap className="h-6 w-6" />;
       case "award":
         return <Award className="h-6 w-6" />;
+      case "Freelance":
+        return <Briefcase className="h-6 w-6" />;
       default:
         return <Briefcase className="h-6 w-6" />;
     }
@@ -143,6 +179,8 @@ export default function ExperiencePage() {
                               ? "default"
                               : experience.type === "education"
                               ? "secondary"
+                              : experience.type === "Freelance"
+                              ? "outline"
                               : "outline"
                           }
                         >
@@ -150,7 +188,7 @@ export default function ExperiencePage() {
                             ? "Trabajo"
                             : experience.type === "education"
                             ? "Educación"
-                            : "Premio"}
+                            : "Freelance"}
                         </Badge>
                       </div>
                       <p className="mb-4">{experience.description}</p>

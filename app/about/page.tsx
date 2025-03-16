@@ -44,7 +44,7 @@ export default function AboutPage() {
             <div className="sticky top-24">
               <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-6">
                 <Image
-                  src="./andres-agudelo.jpg"
+                  src="/andres-agudelo.jpg"
                   alt="Andrés Agudelo"
                   fill
                   className="object-cover"
@@ -69,20 +69,19 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold mb-4">Perfil Profesional</h2>
               <div className="prose dark:prose-invert">
                 <p>
-                  Soy un ingeniero de sistemas con una sólida base en diseño
-                  gráfico y varios años de experiencia en el desarrollo de
-                  software, tanto backend como frontend. Me apasiona crear
-                  interfaces de usuario atractivas e intuitivas que brinden una
-                  experiencia excepcional a los usuarios.
+                  Desarrollador frontend con experiencia en la creación de
+                  soluciones web robustas y atractivas. A lo largo de mi
+                  carrera, he trabajado tanto en el desarrollo backend como
+                  frontend, lo que me proporciona una visión integral del
+                  proceso de desarrollo de software.
                 </p>
                 <p>
-                  Me considero una persona proactiva, con buen humor,
-                  acostumbrado a trabajar bajo presión y capaz de resolver
-                  problemas con facilidad. Siempre estoy buscando aprender
-                  nuevas tecnologías y mejorar mis habilidades, manteniéndome
-                  actualizado con las últimas tendencias en desarrollo web como
-                  Next.js y Remix.js, así como con las tecnologías emergentes
-                  como la IA y la automatización.
+                  Me destaco por mi capacidad para trabajar bajo presión, mi
+                  proactividad y mi habilidad para resolver problemas de manera
+                  eficiente. Mi objetivo es aplicar mis conocimientos en
+                  tecnologías como React, JavaScript, HTML y CSS, así como mi
+                  experiencia en frameworks y librerías como Next.js y Remix.js,
+                  para crear experiencias de usuario excepcionales.
                 </p>
                 <p>
                   A lo largo de mi carrera, he trabajado en diversos proyectos

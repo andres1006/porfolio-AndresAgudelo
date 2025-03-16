@@ -121,8 +121,9 @@ export default function Home() {
               </p>
               <p className="text-lg text-muted-foreground mb-8 max-w-lg">
                 Especializado en crear interfaces de usuario atractivas con
-                React y Next.js, sistemas de salud como AURA y landing pages
-                optimizadas como Miti Miti.
+                React, Next.js y React Native. Experiencia en desarrollo de
+                sistemas para el sector salud y optimización de aplicaciones web
+                y móviles con enfoque en UX/UI.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="animate-pulse-slow">
@@ -195,12 +196,6 @@ export default function Home() {
                 title: "Desarrollo Frontend",
                 description:
                   "Creación de interfaces modernas y responsivas utilizando React, Next.js, Astro y las mejores prácticas de desarrollo.",
-              },
-              {
-                icon: <Briefcase className="h-10 w-10 mb-4" />,
-                title: "Sistemas de Salud",
-                description:
-                  "Desarrollo de soluciones tecnológicas para el sector salud, incluyendo gestión de pacientes, diagnósticos y tratamientos médicos.",
               },
               {
                 icon: <User className="h-10 w-10 mb-4" />,
@@ -368,13 +363,13 @@ export default function Home() {
                             Desarrollador Frontend Senior
                           </h3>
                           <p className="text-primary/80 font-medium">
-                            TechSolutions Inc.
+                            Infosel S.A.S
                           </p>
                         </div>
                       </div>
                       <div className="mt-2 md:mt-0">
                         <Badge variant="outline" className="text-sm">
-                          2022 - Presente
+                          2021 - Presente
                         </Badge>
                       </div>
                     </div>
@@ -423,13 +418,13 @@ export default function Home() {
                             Desarrollador Web
                           </h3>
                           <p className="text-primary/80 font-medium">
-                            Miti Digital Agency
+                            Miti Miti (startup)
                           </p>
                         </div>
                       </div>
                       <div className="mt-2 md:mt-0">
                         <Badge variant="outline" className="text-sm">
-                          2020 - 2022
+                          2024
                         </Badge>
                       </div>
                     </div>

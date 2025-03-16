@@ -29,6 +29,63 @@ export default function ProjectsPage() {
       featured: true,
     },
     {
+      id: "gestion-punto-venta-cafe-quindio",
+      title: "Gestión Punto de Venta para Café Quindío",
+      description:
+        "Sistema integral de gestión de punto de venta personalizado para Café Quindío, diseñado para optimizar las operaciones diarias, mejorar la eficiencia y aumentar la rentabilidad. Implementé funcionalidades clave como la gestión de inventario, el procesamiento de ventas, la generación de informes y la gestión de clientes.",
+      image:
+        "https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: [
+        "React.js",
+        "Node.js",
+        "PostgreSQL",
+        "Gestión de Inventario",
+      ],
+      demoUrl: "https://cafe-quindio-pos.example.com",
+      githubUrl: "https://github.com/andres1006/cafe-quindio-pos",
+      featured: true,
+    },
+    {
+      id: "imakination-landing",
+      title: "Imakination Landing Page",
+      description:
+        "Landing page atractiva y efectiva para Imakination, con el objetivo de promocionar sus servicios y generar leads. Página web moderna, responsiva y optimizada para la conversión que destaca la propuesta de valor de Imakination, presenta testimonios de clientes y facilita el contacto con la empresa.",
+      image:
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["HTML", "CSS", "JavaScript", "React"],
+      demoUrl: "https://imakination.example.com",
+      githubUrl: "https://github.com/andres1006/imakination-landing",
+      featured: true,
+    },
+    {
+      id: "freddo-air",
+      title: "Freddo Air App",
+      description:
+        "Aplicación web para Freddo Air, que permite a los usuarios gestionar sus sistemas de climatización de forma remota y eficiente. Implementé funcionalidades clave como el control de temperatura, la programación de horarios, la monitorización del consumo energético y la generación de alertas.",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["React.js", "Node.js", "API REST", "IoT"],
+      demoUrl: "https://freddo-air.example.com",
+      githubUrl: "https://github.com/andres1006/freddo-air",
+      featured: false,
+    },
+    {
+      id: "controlsoft",
+      title: "Controlsoft",
+      description:
+        "Software de gestión integral para Controlsoft, diseñado para automatizar y optimizar sus procesos administrativos y operativos. Implementé funcionalidades como la gestión de proyectos, tareas, documentos, clientes y recursos humanos, mejorando la eficiencia, reduciendo costos operativos y facilitando la toma de decisiones estratégicas.",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "web",
+      technologies: ["Angular", "API REST", "MySQL", "Gestión de Proyectos"],
+      demoUrl: "https://controlsoft.example.com",
+      githubUrl: "https://github.com/andres1006/controlsoft",
+      featured: false,
+    },
+    {
       id: "webapp-heating-shop",
       title: "Tienda de Calefacción",
       description:
@@ -315,15 +372,6 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             ))}
           </div>
           <div className="flex gap-3 mt-auto">
-            <Button asChild size="sm" variant="outline">
-              <Link
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="h-4 w-4 mr-2" /> Demo
-              </Link>
-            </Button>
             <Button asChild size="sm" variant="outline">
               <Link
                 href={project.githubUrl}
