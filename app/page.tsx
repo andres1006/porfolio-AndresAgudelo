@@ -255,12 +255,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "Sistema de Salud AURA",
+                title: "Controlsoft",
                 description:
-                  "Plataforma integral para el sector salud que facilita la gestión de pacientes, diagnósticos y tratamientos médicos. Desarrollada con tecnologías como JavaScript, C++ y MongoDB.",
+                  "Sistema de gestión de control de documentos y procesos de entradas y salidas de barcos puertos.",
                 image:
                   "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                link: "/projects/aura-health-system",
+                link: "/projects/controlsoft",
               },
               {
                 title: "Proyecto Miti Miti",
@@ -379,13 +379,16 @@ export default function Home() {
                         TypeScript
                       </li>
                       <li>
-                        Implementación del sistema de salud AURA para gestión de
-                        pacientes
+                        Implementación de aplicacion web para el analisis
+                        financiero.
                       </li>
                       <li>
                         Optimización de rendimiento y experiencia de usuario
                       </li>
-                      <li>Liderazgo de equipo de 5 desarrolladores frontend</li>
+                      <li>
+                        Mejorar la experiencia de usuario y desarrollar nuevas
+                        funcionalidades.
+                      </li>
                     </ul>
                     <div className="flex flex-wrap gap-2 mt-4">
                       <Badge>React</Badge>
