@@ -9,6 +9,7 @@ import { FloatingWhatsAppButton } from "@/components/ui/floating-whatsapp-button
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://andres-agudelo.dev"),
   title: {
     default: "Andrés Agudelo | Desarrollador Frontend",
     template: "%s | Andrés Agudelo",

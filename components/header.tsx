@@ -27,6 +27,11 @@ import {
 // Todos los items de navegación
 const allNavItems = [
   { name: "Inicio", path: "/", icon: <Home className="h-4 w-4 mr-2" /> },
+  {
+    name: "Más allá del código",
+    path: "/mas-alla-del-codigo",
+    icon: <Code className="h-4 w-4 mr-2" />,
+  },
   { name: "Sobre Mí", path: "/about", icon: <User className="h-4 w-4 mr-2" /> },
   {
     name: "Habilidades",
@@ -54,6 +59,7 @@ const allNavItems = [
 // Items principales que siempre se muestran en desktop
 const mainNavItems = [
   { name: "Inicio", path: "/" },
+  { name: "Más allá del código", path: "/mas-alla-del-codigo" },
   { name: "Proyectos", path: "/projects" },
   { name: "Contacto", path: "/contact" },
 ];
