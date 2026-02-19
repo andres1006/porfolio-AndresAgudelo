@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Badge } from "@/components/ui/badge";
+import { RemotionScrollHero } from "@/components/remotion-player-container";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -101,6 +102,7 @@ export default function Home() {
           </div>
 
           <div className="container relative z-10 px-4 sm:px-6">
+            <RemotionScrollHero />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

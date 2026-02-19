@@ -32,11 +32,10 @@ const allNavItems = [
     path: "/mas-alla-del-codigo",
     icon: <Code className="h-4 w-4 mr-2" />,
   },
-  { name: "Sobre Mí", path: "/about", icon: <User className="h-4 w-4 mr-2" /> },
   {
-    name: "Habilidades",
-    path: "/skills",
-    icon: <Code className="h-4 w-4 mr-2" />,
+    name: "Proyectos",
+    path: "/projects",
+    icon: <Briefcase className="h-4 w-4 mr-2" />,
   },
   {
     name: "Experiencia",
@@ -44,10 +43,11 @@ const allNavItems = [
     icon: <Briefcase className="h-4 w-4 mr-2" />,
   },
   {
-    name: "Proyectos",
-    path: "/projects",
-    icon: <Briefcase className="h-4 w-4 mr-2" />,
+    name: "Habilidades",
+    path: "/skills",
+    icon: <Code className="h-4 w-4 mr-2" />,
   },
+  { name: "Sobre Mí", path: "/about", icon: <User className="h-4 w-4 mr-2" /> },
   { name: "Blog", path: "/blog", icon: <FileText className="h-4 w-4 mr-2" /> },
   {
     name: "Contacto",
