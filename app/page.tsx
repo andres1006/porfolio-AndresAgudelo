@@ -1,528 +1,257 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { motion, useInView, useAnimation } from "framer-motion";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import {
+  ArrowDownRight,
   ArrowRight,
-  Code,
-  Briefcase,
-  User,
+  ArrowUpRight,
+  Bot,
+  Braces,
+  CheckCircle2,
+  Compass,
+  Layers3,
   Mail,
-  ChevronDown,
+  Sparkles,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { Badge } from "@/components/ui/badge";
-
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
+const capabilities = [
+  {
+    number: "01",
+    icon: Bot,
+    title: "Agentes con criterio",
+    description:
+      "Diseño flujos de IA con contexto, controles de calidad y revisión humana donde importa.",
+  },
+  {
+    number: "02",
+    icon: Layers3,
+    title: "Sistemas de producto",
+    description:
+      "Conecto prioridades, arquitectura y entrega para que el producto pueda evolucionar sin perder claridad.",
+  },
+  {
+    number: "03",
+    icon: Braces,
+    title: "Interfaces que aterrizan",
+    description:
+      "Convierto decisiones técnicas en experiencias rápidas y útiles con Next.js, React y TypeScript.",
+  },
+];
+
+const principles = [
+  "Contexto antes de automatizar.",
+  "Especificar antes de construir.",
+  "Evidencia antes que promesas.",
+];
+
+const projects = [
+  {
+    label: "SISTEMA OPERATIVO",
+    title: "Controlsoft",
+    description:
+      "Una plataforma de gestión para centralizar proyectos, tareas, documentos, clientes y recursos del equipo.",
+    href: "/projects/controlsoft",
+    code: "01",
+  },
+  {
+    label: "PRODUCTO DIGITAL",
+    title: "Miti Miti",
+    description:
+      "Una experiencia web enfocada en encontrar el mensaje, la estructura y la velocidad adecuados para convertir.",
+    href: "/projects/landingmiti",
+    code: "02",
+  },
+];
+
+const enter = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Home() {
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const [typingComplete, setTypingComplete] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [controls, isInView]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTypingComplete(true);
-    }, 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const reduceMotion = useReducedMotion();
+  const revealTransition = (delay = 0) => ({
+    duration: reduceMotion ? 0 : 0.5,
+    ease: "easeOut",
+    delay: reduceMotion ? 0 : delay,
+  });
 
   return (
     <>
       <Header />
-
-      <div className="flex flex-col min-h-screen">
-        {/* Hero Section with Animated Background */}
-        <section className="relative py-16 md:py-20 lg:py-24 overflow-hidden min-h-[90vh] flex items-center">
-          {/* Animated background elements */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.08),transparent_65%)]" />
-
-            {/* Animated circles */}
+      <main className="site-shell overflow-hidden">
+        <section className="hero-grid relative isolate min-h-[calc(100svh-4rem)] overflow-hidden">
+          <div className="hero-orb hero-orb-one" aria-hidden="true" />
+          <div className="hero-orb hero-orb-two" aria-hidden="true" />
+          <div className="site-container relative grid min-h-[calc(100svh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-20">
             <motion.div
-              className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-500/5 blur-3xl"
-              animate={{
-                x: [0, 30, 0],
-                y: [0, -30, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-500/5 blur-3xl"
-              animate={{
-                x: [0, -40, 0],
-                y: [0, 40, 0],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-
-            <motion.div
-              className="absolute top-1/2 right-1/3 w-72 h-72 rounded-full bg-pink-500/5 blur-3xl"
-              animate={{
-                x: [0, 50, 0],
-                y: [0, 20, 0],
-              }}
-              transition={{
-                duration: 9,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-          </div>
-
-          <div className="container relative z-10 px-4 sm:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="md:pr-8 lg:pr-12"
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                  <span className="block mb-2 typing-animation overflow-hidden">
-                    Hola, soy
-                  </span>
-                  <span className="gradient-text gradient-blue-purple">
-                    Andrés Agudelo
-                  </span>
-                </h1>
-                <p
-                  className={`text-xl md:text-2xl mb-4 transition-opacity duration-1000 ${
-                    typingComplete
-                      ? "opacity-100 gradient-text gradient-green-blue"
-                      : "opacity-0"
-                  }`}
-                >
-                  Desarrollador Frontend & Especialista en Soluciones
-                  Tecnológicas
-                </p>
-                <p className="text-lg text-muted-foreground mb-8 max-w-lg">
-                  Especializado en crear interfaces de usuario atractivas con
-                  React, Next.js y React Native. Experiencia en desarrollo de
-                  sistemas para el sector salud y optimización de aplicaciones
-                  web y móviles con enfoque en UX/UI.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild variant="outline" size="lg">
-                    <Link href="/contact">Contactar</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30"
-                  >
-                    <Link href="/mas-alla-del-codigo">Más allá del código</Link>
-                  </Button>
-                </div>
+              initial="hidden"
+              animate="visible"
+              transition={{ staggerChildren: 0.12, delayChildren: 0.08 }}
+              className="relative z-10 max-w-3xl"
+            >
+              <motion.p variants={enter} className="eyebrow">
+                <span className="eyebrow-dot" /> AI BUILDER · COLOMBIA / LATAM
+              </motion.p>
+              <motion.h1 variants={enter} className="display-title mt-6">
+                Construyo sistemas que <em>piensan</em> antes de escalar.
+              </motion.h1>
+              <motion.p variants={enter} className="hero-copy mt-7 max-w-xl">
+                Soy Andrés Agudelo. Ayudo a equipos y founders técnicos a convertir
+                problemas complejos en productos de IA claros, mantenibles y útiles.
+              </motion.p>
+              <motion.div variants={enter} className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <Link href="/contact" className="brand-button brand-button-primary">
+                  Hablemos de tu sistema <ArrowRight aria-hidden="true" />
+                </Link>
+                <Link href="/mas-alla-del-codigo" className="brand-button brand-button-ghost">
+                  Ver playbooks <ArrowDownRight aria-hidden="true" />
+                </Link>
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex justify-center md:justify-end"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl hover:shadow-primary/20 transition-all duration-500 group">
-                  <Image
-                    src="/andres-agudelo.jpg"
-                    alt="Andrés Agudelo"
-                    fill
-                    sizes="(max-width: 640px) 18rem, (max-width: 768px) 20rem, (max-width: 1024px) 24rem, (max-width: 1280px) 28rem, 32rem"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/15 to-transparent"></div>
-                  <div className="absolute -inset-0.5 rounded-full bg-gradient-to-tr from-primary/20 via-transparent to-primary/20 animate-pulse-slow opacity-75"></div>
-                </div>
+              <motion.div variants={enter} className="mt-12 flex flex-wrap gap-x-7 gap-y-3 text-xs font-medium uppercase tracking-[0.16em] text-[#B8C2D6]">
+                <span>Agentes IA</span><span className="text-[#3E7BFA]">/</span>
+                <span>SDD</span><span className="text-[#3E7BFA]">/</span>
+                <span>Clean Architecture</span>
               </motion.div>
-            </div>
-          </div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-            style={{ opacity: Math.max(0, 1 - scrollY / 300) }}
-          >
-            <ChevronDown className="h-8 w-8 animate-bounce" />
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.18 }}
+              className="hero-portrait-wrap relative mx-auto w-full max-w-[470px] lg:mx-0 lg:ml-auto"
+            >
+              <div className="hero-portrait-backdrop" aria-hidden="true" />
+              <div className="hero-portrait relative aspect-[4/5] overflow-hidden rounded-[1.6rem]">
+                <Image
+                  src="/images/andres-profile.jpg"
+                  alt="Andrés Agudelo, AI Builder"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 88vw, 470px"
+                  className="object-cover object-[50%_30%] brightness-125 contrast-105"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,17,29,0.01)_25%,rgba(11,17,29,0.04)_48%,rgba(11,17,29,0.72)_100%)]" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                  <p className="text-xs font-semibold tracking-[0.17em] text-[#B8C2D6]">TRABAJO EN PÚBLICO</p>
+                  <p className="mt-2 max-w-xs text-lg leading-snug text-white">Del criterio técnico a productos que el equipo puede sostener.</p>
+                </div>
+              </div>
+              <div className="hero-status-card">
+                <span className="status-pulse" />
+                <span>Construyendo en público</span>
+              </div>
+              <div className="hero-index" aria-hidden="true">AA / 26</div>
+            </motion.div>
+          </div>
         </section>
 
-        {/* Services Section with Scroll Animation */}
-        <section className="py-16 bg-muted/50 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(var(--primary-rgb),0.05),transparent_70%)]" />
+        <section className="border-y border-white/10 bg-[#111A2E]/55 py-6">
+          <div className="site-container flex flex-wrap items-center justify-between gap-4 text-[0.68rem] font-semibold tracking-[0.19em] text-[#B8C2D6] sm:text-xs">
+            <span>PRODUCTO</span><span className="hidden sm:inline text-[#3E7BFA]">✦</span>
+            <span>ARQUITECTURA</span><span className="hidden sm:inline text-[#3E7BFA]">✦</span>
+            <span>IA APLICADA</span><span className="hidden sm:inline text-[#3E7BFA]">✦</span>
+            <span>FRONTEND</span>
+          </div>
+        </section>
+
+        <section className="site-container py-24 lg:py-32">
+          <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+            <div>
+              <p className="eyebrow"><span className="eyebrow-dot" /> EN QUÉ APORTO</p>
+              <h2 className="section-title mt-5">No es solo código.<br />Es <em>sistema.</em></h2>
+            </div>
+            <p className="max-w-2xl self-end text-lg leading-relaxed text-[#B8C2D6]">
+              La IA aporta cuando se integra a un sistema con objetivos, información
+              confiable y una forma clara de verificar el resultado. Ahí es donde
+              enfoco el trabajo.
+            </p>
           </div>
 
-          <div className="container">
-            <ScrollReveal variant="fade" direction="up">
-              <h2 className="text-3xl font-bold mb-4  text-center">
-                Mis Servicios
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-12">
-                Servicios especializados para satisfacer tus necesidades de
-                desarrollo web y diseño
-              </p>
-            </ScrollReveal>
+          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3">
+            {capabilities.map(({ number, icon: Icon, title, description }, index) => (
+              <motion.article key={number} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} transition={revealTransition(index * 0.08)} variants={enter} className="capability-card group bg-[#0B111D] p-7 sm:p-8">
+                <div className="flex items-start justify-between">
+                  <span className="font-mono text-xs text-[#3E7BFA]">{number}</span>
+                  <Icon className="h-5 w-5 text-[#B8C2D6] transition-colors group-hover:text-[#3E7BFA]" />
+                </div>
+                <h3 className="mt-14 text-2xl font-semibold tracking-tight text-white">{title}</h3>
+                <p className="mt-4 leading-relaxed text-[#B8C2D6]">{description}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <Code className="h-10 w-10 mb-4" />,
-                  title: "Desarrollo Frontend",
-                  description:
-                    "Creación de interfaces modernas y responsivas utilizando React, Next.js, Astro y las mejores prácticas de desarrollo.",
-                },
-                {
-                  icon: <User className="h-10 w-10 mb-4" />,
-                  title: "Landing Pages Optimizadas",
-                  description:
-                    "Diseño y desarrollo de landing pages de alto rendimiento con Astro, optimizadas para SEO y conversión.",
-                },
-              ].map((service, index) => (
-                <ScrollReveal
-                  key={index}
-                  variant="slide"
-                  direction="up"
-                  delay={index * 0.2}
-                >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-t-4 border-t-primary/80">
-                    <CardContent className="pt-6 text-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        {service.icon}
-                      </motion.div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {service.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
+        <section className="relative border-y border-white/10 bg-[#111A2E]/45 py-24 lg:py-32">
+          <div className="technical-lines" aria-hidden="true" />
+          <div className="site-container relative">
+            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+              <div>
+                <p className="eyebrow"><span className="eyebrow-dot" /> PRINCIPIOS DE TRABAJO</p>
+                <h2 className="section-title mt-5">Menos ruido.<br />Más <em>criterio.</em></h2>
+              </div>
+              <Compass className="h-12 w-12 text-[#3E7BFA]" aria-hidden="true" />
+            </div>
+            <div className="mt-14 grid gap-4 md:grid-cols-3">
+              {principles.map((principle, index) => (
+                <motion.div key={principle} initial={{ opacity: 0, x: reduceMotion ? 0 : -14 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={revealTransition(index * 0.08)} className="principle-row">
+                  <span className="font-mono text-sm text-[#3E7BFA]">0{index + 1}</span>
+                  <p>{principle}</p>
+                  <CheckCircle2 className="h-4 w-4 text-[#3E7BFA]" aria-hidden="true" />
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Featured Projects with Parallax Effect */}
-        <section className="py-16 relative">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(var(--primary-rgb),0.05),transparent_70%)]" />
-          </div>
-
-          <div className="container">
-            <ScrollReveal variant="fade" direction="up">
-              <h2 className="text-3xl font-bold mb-4 text-center">
-                Proyectos Destacados
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-12">
-                Una selección de mis trabajos más relevantes
-              </p>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  title: "Controlsoft",
-                  description:
-                    "Software de gestión integral para Controlsoft, diseñado para automatizar y optimizar sus procesos administrativos y operativos. Implementé funcionalidades como la gestión de proyectos, tareas, documentos, clientes y recursos humanos, mejorando la eficiencia, reduciendo costos operativos y facilitando la toma de decisiones estratégicas.",
-                  image:
-                    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                  link: "/projects/controlsoft",
-                },
-                {
-                  title: "Miti Miti",
-                  description:
-                    "Landing page moderna y optimizada para SEO desarrollada con Astro. Enfocada en maximizar la conversión y proporcionar una experiencia de usuario excepcional.",
-                  image:
-                    "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                  link: "/projects/landingmiti",
-                },
-              ].map((project, index) => (
-                <ScrollReveal key={index} variant="scale" delay={index * 0.2}>
-                  <Card className="overflow-hidden h-full shadow-md hover:shadow-xl transition-all duration-300">
-                    <div className="relative h-48 md:h-56 lg:h-64">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform hover:scale-105 duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-xl font-semibold mb-1 text-white">
-                          {project.title}
-                        </h3>
-                      </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <p className="text-muted-foreground mb-4">
-                        {project.description}
-                      </p>
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="group"
-                      >
-                        <Link href={project.link}>
-                          Ver Proyecto
-                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
+        <section className="site-container py-24 lg:py-32">
+          <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow"><span className="eyebrow-dot" /> TRABAJO SELECCIONADO</p>
+              <h2 className="section-title mt-5">Productos con<br /><em>problemas reales.</em></h2>
             </div>
-
-            <ScrollReveal variant="fade" direction="up" delay={0.4}>
-              <div className="text-center mt-12">
-                <Button asChild className="group">
-                  <Link href="/projects">
-                    Ver Todos los Proyectos
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </div>
-            </ScrollReveal>
+            <Link href="/projects" className="inline-flex items-center gap-2 self-start text-sm font-semibold text-white transition-colors hover:text-[#3E7BFA] md:self-auto">
+              Ver todos los proyectos <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <motion.div key={project.title} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} transition={revealTransition(index * 0.1)} variants={enter}>
+              <Link href={project.href} className="project-panel group">
+                <span className="font-mono text-xs tracking-widest text-[#3E7BFA]">CASE / {project.code}</span>
+                <div className="mt-20 flex items-end justify-between gap-5">
+                  <div>
+                    <p className="text-xs font-semibold tracking-[0.15em] text-[#B8C2D6]">{project.label}</p>
+                    <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">{project.title}</h3>
+                  </div>
+                  <ArrowUpRight className="h-6 w-6 shrink-0 text-[#B8C2D6] transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#3E7BFA]" />
+                </div>
+                <p className="mt-5 max-w-md leading-relaxed text-[#B8C2D6]">{project.description}</p>
+              </Link>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        {/* Latest Experience Section */}
-        <section className="py-16 bg-muted/30 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(var(--primary-rgb),0.05),transparent_70%)]" />
-          </div>
-
-          <div className="container">
-            <ScrollReveal variant="fade" direction="up">
-              <h2 className="text-3xl font-bold mb-4 gradient-text gradient-blue-purple text-center">
-                Experiencia Profesional
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-12">
-                Mis últimas experiencias laborales en el campo del desarrollo
-              </p>
-            </ScrollReveal>
-
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/20 hidden lg:block"></div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Experience 1 */}
-                <ScrollReveal
-                  variant="slide"
-                  direction="left"
-                  delay={0.1}
-                  className="lg:pr-12"
-                >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary/80 relative">
-                    {/* Timeline dot */}
-                    <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary hidden lg:flex items-center justify-center">
-                      <div className="w-3 h-3 rounded-full bg-background"></div>
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <div className="flex items-center">
-                          <Briefcase className="h-5 w-5 mr-2 text-primary" />
-                          <div>
-                            <h3 className="text-xl font-semibold">
-                              Desarrollador Frontend Senior
-                            </h3>
-                            <p className="text-primary/80 font-medium">
-                              Infosel S.A.S
-                            </p>
-                          </div>
-                        </div>
-                        <div className="mt-2 md:mt-0">
-                          <Badge variant="outline" className="text-sm">
-                            2021 - Presente
-                          </Badge>
-                        </div>
-                      </div>
-                      <ul className="space-y-2 mb-4 list-disc list-inside text-muted-foreground">
-                        <li>
-                          Desarrollo de aplicaciones web con React, Next.js y
-                          TypeScript
-                        </li>
-                        <li>
-                          Implementación de aplicacion web para el analisis
-                          financiero.
-                        </li>
-                        <li>
-                          Optimización de rendimiento y experiencia de usuario
-                        </li>
-                        <li>
-                          Mejorar la experiencia de usuario y desarrollar nuevas
-                          funcionalidades.
-                        </li>
-                      </ul>
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        <Badge>React</Badge>
-                        <Badge>Next.js</Badge>
-                        <Badge>TypeScript</Badge>
-                        <Badge>Tailwind CSS</Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-
-                {/* Experience 2 */}
-                <ScrollReveal
-                  variant="slide"
-                  direction="right"
-                  delay={0.2}
-                  className="lg:pl-12"
-                >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-r-4 border-r-primary/80 relative">
-                    {/* Timeline dot */}
-                    <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary hidden lg:flex items-center justify-center">
-                      <div className="w-3 h-3 rounded-full bg-background"></div>
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <div className="flex items-center">
-                          <Briefcase className="h-5 w-5 mr-2 text-primary" />
-                          <div>
-                            <h3 className="text-xl font-semibold">
-                              Desarrollador Web
-                            </h3>
-                            <p className="text-primary/80 font-medium">
-                              Miti Miti (startup)
-                            </p>
-                          </div>
-                        </div>
-                        <div className="mt-2 md:mt-0">
-                          <Badge variant="outline" className="text-sm">
-                            2024
-                          </Badge>
-                        </div>
-                      </div>
-                      <ul className="space-y-2 mb-4 list-disc list-inside text-muted-foreground">
-                        <li>
-                          Desarrollo de landing pages optimizadas para SEO con
-                          Astro
-                        </li>
-                        <li>
-                          Creación del proyecto Miti Miti para maximizar
-                          conversiones
-                        </li>
-                        <li>
-                          Implementación de estrategias de rendimiento web
-                        </li>
-                        <li>Colaboración con equipos de diseño y marketing</li>
-                      </ul>
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        <Badge>Astro</Badge>
-                        <Badge>JavaScript</Badge>
-                        <Badge>CSS</Badge>
-                        <Badge>SEO</Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              </div>
-            </div>
-
-            <ScrollReveal variant="fade" direction="up" delay={0.4}>
-              <div className="text-center mt-12">
-                <Button asChild className="group">
-                  <Link href="/experience">
-                    Ver Toda Mi Experiencia
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </div>
-            </ScrollReveal>
+        <section className="site-container pb-24 lg:pb-32">
+          <div className="cta-panel relative overflow-hidden rounded-[1.6rem] border border-[#3E7BFA]/40 px-7 py-14 sm:px-12 lg:px-16 lg:py-20">
+            <Sparkles className="absolute right-6 top-6 h-8 w-8 text-[#3E7BFA]/60 sm:right-10 sm:top-10" aria-hidden="true" />
+            <p className="eyebrow"><span className="eyebrow-dot" /> PRÓXIMO PASO</p>
+            <h2 className="section-title mt-5 max-w-3xl">¿Tu sistema ya necesita <em>mejor criterio?</em></h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#B8C2D6]">
+              Si estás construyendo un producto, automatizando procesos o ordenando
+              una base técnica, conversemos sobre el siguiente paso.
+            </p>
+            <Link href="/contact" className="brand-button brand-button-primary mt-9">
+              Escribir a Andrés <Mail className="h-4 w-4" />
+            </Link>
           </div>
         </section>
-
-        {/* Contact CTA with Gradient Background */}
-        <section className="py-16 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80"></div>
-          <motion.div
-            className="absolute inset-0 opacity-20"
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            style={{
-              backgroundImage:
-                'url("data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23ffffff" fill-opacity="1" fill-rule="evenodd"/%3E%3C/svg%3E")',
-            }}
-          />
-
-          <div className="container relative z-10">
-            <ScrollReveal variant="slide" direction="up">
-              <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold mb-4 text-primary-foreground">
-                  ¿Trabajamos Juntos?
-                </h2>
-                <p className="text-xl opacity-90 mb-8 text-primary-foreground">
-                  ¿Tienes un proyecto en mente? Contáctame para discutir cómo
-                  puedo ayudarte.
-                </p>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="secondary"
-                  className="group hover:shadow-lg transition-all duration-300"
-                >
-                  <Link href="/contact">
-                    <Mail className="mr-2 h-4 w-4" /> Contactar
-                  </Link>
-                </Button>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-      </div>
+      </main>
       <Footer />
     </>
   );

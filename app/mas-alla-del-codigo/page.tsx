@@ -1,753 +1,190 @@
-// Este archivo incluye animaciones de entrada usando Framer Motion para los textos y un background minimalista e interactivo con el mouse.
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useMotionTemplate,
-} from "framer-motion";
+  ArrowDownRight,
+  ArrowRight,
+  BookOpen,
+  Bot,
+  Braces,
+  CheckCircle2,
+  Compass,
+  FileText,
+  GitBranch,
+  Layers3,
+} from "lucide-react";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+
+const foundations = [
+  { number: "01", title: "Contexto", copy: "Definir el problema, los límites y la información que el sistema realmente puede usar." },
+  { number: "02", title: "Criterio", copy: "Explicitar qué significa una salida útil antes de delegar trabajo a un modelo." },
+  { number: "03", title: "Iteración", copy: "Probar en ciclos cortos, revisar evidencia y ajustar el sistema sin esconder los límites." },
+];
+
+const library = [
+  {
+    tag: "FUNDAMENTOS",
+    icon: Bot,
+    title: "IA para desarrolladores: una base con criterio",
+    copy: "LLMs, capacidades, límites y una forma responsable de integrarlos al trabajo técnico.",
+    href: "/mas-alla-del-codigo/fundmentos",
+    cta: "Ver fundamentos",
+  },
+  {
+    tag: "PLAYBOOK 01",
+    icon: FileText,
+    title: "Comunicación efectiva con IA",
+    copy: "Cómo convertir una intención ambigua en contexto, especificaciones y ciclos de revisión útiles.",
+    href: "/mas-alla-del-codigo/playbook-1",
+    cta: "Abrir playbook",
+  },
+];
+
+const roadmap = [
+  "Contexto y especificaciones",
+  "Arquitectura para agentes",
+  "Iteración y evaluación",
+  "Automatización con supervisión",
+  "Clean Architecture aplicada",
+  "Construir en público",
+];
+
+const reveal = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function MasAllaDelCodigo() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [showIntro, setShowIntro] = useState(false);
-  const [showObjetivo, setShowObjetivo] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Motion values para el mouse
-  const mouseX = useMotionValue(0.5); // Normalizado (0-1)
-  const mouseY = useMotionValue(0.5);
-  // Animación suave
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  // Transformar a porcentaje para el gradiente
-  const gradX = useTransform(springX, (v) => `${v * 100}%`);
-  const gradY = useTransform(springY, (v) => `${v * 100}%`);
-
-  // Usar useMotionTemplate para el background dinámico
-  const background = useMotionTemplate`radial-gradient(circle at ${gradX} ${gradY}, #7ecbff33 0%, #000 80%)`;
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      mouseX.set(Math.max(0, Math.min(1, x)));
-      mouseY.set(Math.max(0, Math.min(1, y)));
-    };
-    const node = containerRef.current;
-    if (node) {
-      node.addEventListener("mousemove", handleMouseMove);
-    }
-    return () => {
-      if (node) node.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [mouseX, mouseY]);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 520px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener?.("change", update);
-    return () => mq.removeEventListener?.("change", update);
-  }, []);
+  const reduceMotion = useReducedMotion();
+  const transition = reduceMotion ? { duration: 0 } : { duration: 0.55, ease: "easeOut" };
 
   return (
-    <motion.div
-      ref={containerRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      style={{
-        minHeight: "100vh",
-        background: "#000",
-        color: "#7ecbff",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "left",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Header */}
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          zIndex: 2,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            maxWidth: 1100,
-            padding: "0.75rem 1rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            background: "rgba(0,0,0,0.20)",
-            backdropFilter: "blur(8px)",
-            borderBottom: "1px solid #7ecbff22",
-            borderRadius: "0 0 0.75rem 0.75rem",
-          }}
-        >
-          <a
-            href="/"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 0,
-              color: "#7ecbff",
-              textDecoration: "none",
-              fontWeight: 600,
-              letterSpacing: 0.3,
-            }}
-          >
-            <span>Andrés Agudelo Dev</span>
-          </a>
-          <div style={{ position: "relative" }}>
-            <motion.button
-              type="button"
-              onClick={() => setMenuOpen((v) => !v)}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                background: "rgba(126,203,255,0.10)",
-                border: "1px solid #113345",
-                color: "#7ecbff",
-                padding: "8px 12px",
-                borderRadius: 10,
-                cursor: "pointer",
-                fontWeight: 600,
-              }}
+    <>
+      <Header />
+      <main className="site-shell library-shell overflow-hidden">
+        <section className="library-hero relative isolate overflow-hidden border-b border-border">
+          <div className="library-scanline" aria-hidden="true" />
+          <div className="library-orb library-orb-one" aria-hidden="true" />
+          <div className="library-orb library-orb-two" aria-hidden="true" />
+          <div className="site-container relative grid min-h-[62svh] items-end gap-12 py-20 sm:py-24 lg:grid-cols-[1.2fr_.8fr] lg:py-28">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              transition={{ staggerChildren: reduceMotion ? 0 : 0.1, delayChildren: reduceMotion ? 0 : 0.05 }}
+              className="max-w-3xl"
             >
-              Menú ▾
-            </motion.button>
-            <AnimatePresence>
-              {menuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.18 }}
-                  style={{
-                    position: "absolute",
-                    right: 0,
-                    top: "calc(100% + 8px)",
-                    minWidth: 220,
-                    background: "rgba(0,0,0,0.6)",
-                    backdropFilter: "blur(8px)",
-                    border: "1px solid #113345",
-                    borderRadius: 12,
-                    boxShadow: "0 12px 48px rgba(0,0,0,0.45)",
-                    overflow: "hidden",
-                    zIndex: 5,
-                  }}
-                >
-                  {[
-                    {
-                      label: "Playbook #1",
-                      href: "/mas-alla-del-codigo/playbook-1",
-                    },
-                    {
-                      label: "Fundamentos",
-                      href: "/mas-alla-del-codigo/fundmentos",
-                    },
-                    { label: "Sobre mí", href: "/about" },
-                  ].map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      style={{
-                        display: "block",
-                        padding: "10px 12px",
-                        color: "#b6e6ff",
-                        textDecoration: "none",
-                        borderBottom: "1px solid #113345",
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                  <div style={{ height: 1, background: "#113345" }} />
-                  <a
-                    href="/"
-                    onClick={() => setMenuOpen(false)}
-                    style={{
-                      display: "block",
-                      padding: "10px 12px",
-                      color: "#7ecbff",
-                      textDecoration: "none",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Inicio
-                  </a>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <motion.p variants={reveal} className="eyebrow"><span className="eyebrow-dot" /> BIBLIOTECA ABIERTA / BUILD IN PUBLIC</motion.p>
+              <motion.h1 variants={reveal} className="display-title mt-6">
+                Más allá<br />del <em>código.</em>
+              </motion.h1>
+              <motion.p variants={reveal} className="hero-copy mt-7 max-w-2xl">
+                Notas y playbooks para conectar agentes de IA, arquitectura y producto
+                sin delegar el criterio de ingeniería.
+              </motion.p>
+              <motion.div variants={reveal} className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a href="#biblioteca" className="brand-button brand-button-primary">Explorar la biblioteca <ArrowDownRight aria-hidden="true" /></a>
+                <Link href="/about" className="brand-button brand-button-ghost">Cómo trabajo <ArrowRight aria-hidden="true" /></Link>
+              </motion.div>
+            </motion.div>
+
+            <motion.aside
+              initial={{ opacity: 0, x: reduceMotion ? 0 : 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ ...transition, delay: reduceMotion ? 0 : 0.2 }}
+              className="library-system-card"
+              aria-label="Principio de la biblioteca"
+            >
+              <div className="flex items-center justify-between text-xs font-semibold tracking-[0.16em] text-[var(--brand-muted)]">
+                <span>SISTEMA / 01</span><GitBranch className="h-4 w-4 text-primary" aria-hidden="true" />
+              </div>
+              <p className="mt-12 font-mono text-xs text-primary">INPUT → DECISIÓN → EVIDENCIA</p>
+              <p className="mt-4 text-2xl font-semibold leading-tight text-[var(--brand-foreground)]">La IA acelera mejor cuando el sistema sabe qué está buscando.</p>
+              <div className="mt-8 flex items-center gap-3 border-t border-border pt-5 text-sm text-[var(--brand-muted)]"><span className="status-pulse" /> En construcción pública</div>
+            </motion.aside>
           </div>
-        </div>
-      </motion.header>
-      {/* Background animado e interactivo con el mouse */}
-      <motion.div
-        style={{
-          position: "absolute",
-          top: "-20%",
-          left: "-20%",
-          width: "140vw",
-          height: "140vh",
-          zIndex: 0,
-          pointerEvents: "none",
-          background,
-          filter: "blur(40px)",
-        }}
-      />
-      {/* Contenido principal */}
-      <div
-        style={{
-          zIndex: 1,
-          width: "100%",
-          maxWidth: 900,
-          padding: "2rem 1.25rem 4rem",
-        }}
-      >
-        {/* Hero */}
-        <motion.section
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          style={{ textAlign: "center", marginTop: 76, marginBottom: 28 }}
-        >
-          {/* Avatar circular */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.18 }}
-            style={{
-              width: "clamp(72px, 12vw, 112px)",
-              height: "clamp(72px, 12vw, 112px)",
-              borderRadius: 999,
-              margin: "0 auto 10px",
-              border: "1px solid #113345",
-              overflow: "hidden",
-              position: "relative",
-              boxShadow: "0 6px 30px rgba(126,203,255,0.15)",
-            }}
-          >
-            <Image
-              src="/andres-agudelo.jpg"
-              alt="Andrés Agudelo"
-              fill
-              sizes="(max-width: 480px) 72px, (max-width: 1024px) 160px, 1602px"
-              priority
-              style={{ objectFit: "cover" }}
-            />
-          </motion.div>
-          <motion.a
-            href="/about"
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.22 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.99 }}
-            style={{
-              display: "inline-block",
-              marginTop: 10,
-              padding: "8px 12px",
-              borderRadius: 10,
-              border: "1px solid #113345",
-              background: "rgba(126,203,255,0.08)",
-              color: "#7ecbff",
-              textDecoration: "none",
-              fontWeight: 600,
-            }}
-          >
-            Saber más de mí →
-          </motion.a>
-          <h1
-            style={{ margin: "6px 0 0", fontSize: "2.4rem", color: "#7ecbff" }}
-          >
-            Más allá del código
-          </h1>
-          <p
-            style={{ margin: "4px 0 0", fontSize: "0.95rem", color: "#b6e6ff" }}
-          >
-            Playbooks para desarrolladores
-          </p>
-        </motion.section>
+        </section>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.22 }}
-          style={{
-            fontSize: "1.5rem",
-            marginBottom: 12,
-          }}
-        >
-          Los 7 Playbooks Estratégicos
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25 }}
-          style={{
-            color: "#b6e6ff",
-            fontSize: "1.05rem",
-            marginBottom: 28,
-            lineHeight: 1.7,
-            textAlign: "justify",
-          }}
-        >
-          El desarrollo de software ha entrado en una nueva era. La inteligencia
-          artificial no es solo una herramienta más en nuestro arsenal; es un
-          amplificador de capacidades que puede multiplicar nuestra
-          productividad por 10x si sabemos cómo utilizarla correctamente.
-        </motion.p>
-
-        {/* Métricas compactas */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-            gap: 12,
-            marginBottom: 18,
-          }}
-        >
-          {[
-            { title: "Tiempo", desc: "-25% en tareas estándar" },
-            { title: "Calidad", desc: "Menos bugs, mejor arquitectura" },
-            { title: "Aprendizaje", desc: "+ habilidades cada sprint" },
-            { title: "Balance", desc: "Productividad sin burnout" },
-          ].map((item) => (
-            <div
-              key={item.title}
-              style={{
-                background: "rgba(126,203,255,0.08)",
-                border: "1px solid #113345",
-                borderRadius: 12,
-                padding: "10px 12px",
-              }}
-            >
-              <div
-                style={{ color: "#7ecbff", fontWeight: 700, marginBottom: 4 }}
+        <section className="site-container py-20 lg:py-28">
+          <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+            <div>
+              <p className="eyebrow"><span className="eyebrow-dot" /> EL PUNTO DE PARTIDA</p>
+              <h2 className="section-title mt-5">No necesitas más prompts.<br />Necesitas <em>mejor contexto.</em></h2>
+            </div>
+            <p className="max-w-2xl self-end text-lg leading-relaxed text-[var(--brand-muted)]">
+              Esta biblioteca está pensada para developers, CTOs y founders técnicos en LATAM.
+              Cada pieza parte de un problema de construcción: aclarar una decisión, evaluar una salida o convertir una idea en un sistema sostenible.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
+            {foundations.map((item, index) => (
+              <motion.article
+                key={item.number}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ ...transition, delay: reduceMotion ? 0 : index * 0.08 }}
+                variants={reveal}
+                className="library-principle bg-[var(--brand-bg)] p-7 sm:p-8"
               >
-                {item.title}
+                <span className="font-mono text-xs text-primary">{item.number}</span>
+                <h3 className="mt-12 text-2xl font-semibold tracking-tight text-[var(--brand-foreground)]">{item.title}</h3>
+                <p className="mt-4 leading-relaxed text-[var(--brand-muted)]">{item.copy}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section id="biblioteca" className="relative border-y border-border bg-[var(--brand-surface)] py-20 lg:py-28">
+          <div className="technical-lines" aria-hidden="true" />
+          <div className="site-container relative">
+            <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+              <div>
+                <p className="eyebrow"><span className="eyebrow-dot" /> CONTENIDO DISPONIBLE</p>
+                <h2 className="section-title mt-5">Ideas que se vuelven<br /><em>práctica.</em></h2>
               </div>
-              <div style={{ color: "#b6e6ff", fontSize: 13 }}>{item.desc}</div>
+              <BookOpen className="h-12 w-12 text-primary" aria-hidden="true" />
             </div>
-          ))}
-        </div>
-
-        {/* Introducción (acordeón) */}
-        <motion.button
-          onClick={() => setShowIntro((v) => !v)}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.28 }}
-          style={{
-            width: "100%",
-            textAlign: "left",
-            background: "rgba(126,203,255,0.08)",
-            border: "1px solid #113345",
-            color: "#7ecbff",
-            padding: "12px 14px",
-            borderRadius: 12,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 8,
-          }}
-        >
-          <span style={{ fontSize: "1.05rem", fontWeight: 600 }}>
-            Introducción: La nueva era del desarrollo
-          </span>
-          <span style={{ color: "#b6e6ff", fontSize: 12 }}>
-            {showIntro ? "Ocultar" : "Ver más"}
-          </span>
-        </motion.button>
-        <AnimatePresence>
-          {showIntro && (
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.35 }}
-              style={{
-                color: "#b6e6ff",
-                lineHeight: 1.9,
-                marginBottom: 20,
-                border: "1px solid #113345",
-                borderRadius: 12,
-                padding: "12px 14px",
-                background: "rgba(0,0,0,0.25)",
-              }}
-            >
-              <p style={{ marginBottom: 12, textAlign: "justify" }}>
-                Antes, el valor de un desarrollador se medía principalmente por
-                su capacidad de escribir código desde cero. Hoy, el verdadero
-                valor radica en:
-              </p>
-              <ul style={{ paddingLeft: 20, marginBottom: 16 }}>
-                <li>
-                  <strong>Capacidad de abstracción</strong>: Pensar en sistemas
-                  y arquitecturas
-                </li>
-                <li>
-                  <strong>Habilidad de comunicación</strong>: Traducir problemas
-                  complejos en instrucciones claras
-                </li>
-                <li>
-                  <strong>Velocidad de iteración</strong>: Probar, fallar y
-                  mejorar rápidamente
-                </li>
-                <li>
-                  <strong>Calidad sobre cantidad</strong>: Producir código
-                  mantenible y escalable
-                </li>
-              </ul>
-              <p style={{ marginBottom: 12, textAlign: "justify" }}>
-                Este no es otro tutorial sobre cómo usar ChatGPT o Copilot. Es
-                un sistema completo que transforma tu forma de trabajar, pensar
-                y crecer como desarrollador. Cada paso está diseñado para
-                construir sobre el anterior, creando un ciclo virtuoso de mejora
-                continua.
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Objetivo (acordeón) */}
-        <motion.button
-          onClick={() => setShowObjetivo((v) => !v)}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.34 }}
-          style={{
-            width: "100%",
-            textAlign: "left",
-            background: "rgba(126,203,255,0.08)",
-            border: "1px solid #113345",
-            color: "#7ecbff",
-            padding: "12px 14px",
-            borderRadius: 12,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 8,
-          }}
-        >
-          <span style={{ fontSize: "1.05rem", fontWeight: 600 }}>
-            Objetivo del lanzamiento
-          </span>
-          <span style={{ color: "#b6e6ff", fontSize: 12 }}>
-            {showObjetivo ? "Ocultar" : "Ver más"}
-          </span>
-        </motion.button>
-        <AnimatePresence>
-          {showObjetivo && (
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.35 }}
-              style={{
-                color: "#b6e6ff",
-                lineHeight: 1.8,
-                marginBottom: 20,
-                border: "1px solid #113345",
-                borderRadius: 12,
-                padding: "12px 14px",
-                background: "rgba(0,0,0,0.25)",
-              }}
-            >
-              <ul style={{ paddingLeft: 20, margin: 0 }}>
-                <li>Compartir la visión y fundamentos del sistema.</li>
-                <li>
-                  Dar acceso al{" "}
-                  <strong>Playbook #1: Comunicación Efectiva con IA</strong>.
-                </li>
-                <li>
-                  Definir métricas para medir impacto real en el trabajo diario.
-                </li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Cards grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 12,
-            alignItems: "stretch",
-            marginBottom: 14,
-          }}
-        >
-          {/* Card Fundamentos */}
-          <motion.a
-            href="/mas-alla-del-codigo/fundmentos"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.48 }}
-            style={{
-              display: "block",
-              background:
-                "linear-gradient(180deg, rgba(126,203,255,0.14) 0%, rgba(126,203,255,0.06) 100%)",
-              border: "1.5px solid #7ecbff33",
-              borderRadius: "1rem",
-              padding: "clamp(12px, 3vw, 20px)",
-              color: "#b6e6ff",
-              textDecoration: "none",
-              boxShadow: "0 8px 40px 0 rgba(126,203,255,0.08)",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              height: "100%",
-            }}
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.995 }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 6,
-                minHeight: "100%",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  flexDirection: "column",
-                  gap: 10,
-                }}
-              >
-                <span
-                  style={{
-                    display: "inline-block",
-                    fontSize: "0.8rem",
-                    padding: "0.25rem 0.6rem",
-                    borderRadius: 999,
-                    background: "#7ecbff22",
-                    border: "1px solid #7ecbff33",
-                    color: "#7ecbff",
-                    fontWeight: 600,
-                    letterSpacing: 0.3,
-                  }}
-                >
-                  Fundamentos
-                </span>
-                <h3
-                  style={{
-                    margin: isMobile ? "6px 0 0" : 0,
-                    fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-                    color: "#7ecbff",
-                  }}
-                >
-                  Conceptos básicos de IA para desarrolladores
-                </h3>
-              </div>
-              <p
-                style={{
-                  margin: "6px 0 10px",
-                  lineHeight: 1.7,
-                  fontSize: "clamp(0.92rem, 2.3vw, 1rem)",
-                }}
-              >
-                Entiende LLMs, MLMs, sus usos, limitaciones y configuración
-                inicial para potenciar tu workflow con IA.
-              </p>
-              <span
-                style={{
-                  alignSelf: "flex-start",
-                  fontWeight: 600,
-                  color: "#7ecbff",
-                  borderBottom: "1px dashed #7ecbff55",
-                }}
-              >
-                Ver sección completa →
-              </span>
+            <div className="mt-14 grid gap-5 md:grid-cols-2">
+              {library.map(({ tag, icon: Icon, title, copy, href, cta }, index) => (
+                <motion.div key={href} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} transition={{ ...transition, delay: reduceMotion ? 0 : index * 0.1 }} variants={reveal}>
+                  <Link href={href} className="library-card group">
+                    <div className="flex items-start justify-between gap-4"><span className="font-mono text-xs tracking-[0.15em] text-primary">{tag}</span><Icon className="h-5 w-5 text-[var(--brand-muted)] transition-colors group-hover:text-primary" aria-hidden="true" /></div>
+                    <h3 className="mt-16 text-3xl font-semibold tracking-tight text-[var(--brand-foreground)]">{title}</h3>
+                    <p className="mt-5 max-w-md leading-relaxed text-[var(--brand-muted)]">{copy}</p>
+                    <span className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-foreground)] transition-colors group-hover:text-primary">{cta} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-          </motion.a>
+          </div>
+        </section>
 
-          {/* Card Playbook #1 */}
-          <motion.a
-            id="playbook-1"
-            href="/mas-alla-del-codigo/playbook-1"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            style={{
-              display: "block",
-              background:
-                "linear-gradient(180deg, rgba(126,203,255,0.14) 0%, rgba(126,203,255,0.06) 100%)",
-              border: "1.5px solid #7ecbff33",
-              borderRadius: "1rem",
-              padding: "clamp(12px, 3vw, 20px)",
-              color: "#b6e6ff",
-              textDecoration: "none",
-              boxShadow: "0 8px 40px 0 rgba(126,203,255,0.08)",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              height: "100%",
-            }}
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.995 }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 6,
-                minHeight: "100%",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  flexDirection: "column",
-                  gap: 10,
-                }}
-              >
-                <span
-                  className="truncate"
-                  style={{
-                    display: "inline-block",
-                    fontSize: "0.8rem",
-                    padding: "0.25rem 0.6rem",
-                    borderRadius: 999,
-                    background: "#7ecbff22",
-                    border: "1px solid #7ecbff33",
-                    color: "#7ecbff",
-                    fontWeight: 600,
-                    letterSpacing: 0.3,
-                  }}
-                >
-                  Playbook #1
-                </span>
-                <h3
-                  style={{
-                    margin: isMobile ? "6px 0 0" : 0,
-                    fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-                    color: "#7ecbff",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                  }}
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 4h9l3 3v13a1 1 0 01-1 1H6a1 1 0 01-1-1V5a1 1 0 011-1z"
-                      stroke="#7ecbff"
-                      strokeOpacity="0.9"
-                    />
-                    <path
-                      d="M9 9h6M9 12h6M9 15h4"
-                      stroke="#7ecbff"
-                      strokeWidth="1"
-                      strokeOpacity="0.8"
-                    />
-                  </svg>
-                  Comunicación Efectiva con IA
-                </h3>
-              </div>
-              <p
-                style={{
-                  margin: "6px 0 10px",
-                  lineHeight: 1.7,
-                  fontSize: "clamp(0.92rem, 2.3vw, 1rem)",
-                }}
-              >
-                Domina la comunicación con IA para convertir ideas en
-                implementaciones efectivas: prompts claros, contexto adecuado y
-                ciclos de iteración rápidos.
-              </p>
-              <span
-                style={{
-                  alignSelf: "flex-start",
-                  fontWeight: 600,
-                  color: "#7ecbff",
-                  borderBottom: "1px dashed #7ecbff55",
-                }}
-              >
-                Abrir Playbook →
-              </span>
+        <section className="site-container py-20 lg:py-28">
+          <div className="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
+            <div>
+              <p className="eyebrow"><span className="eyebrow-dot" /> SIGUIENTE ITERACIÓN</p>
+              <h2 className="section-title mt-5">El sistema se construye<br /><em>por capas.</em></h2>
+              <p className="mt-6 max-w-lg leading-relaxed text-[var(--brand-muted)]">Los próximos playbooks se publicarán cuando haya una idea clara, una aplicación práctica y una forma honesta de evaluar lo aprendido.</p>
             </div>
-          </motion.a>
-        </div>
+            <ol className="roadmap-list">
+              {roadmap.map((item, index) => <li key={item}><span className="font-mono text-xs text-primary">{String(index + 2).padStart(2, "0")}</span><span>{item}</span><CheckCircle2 className="h-4 w-4 text-[var(--brand-muted)]" aria-hidden="true" /><span className="text-xs font-medium uppercase tracking-wider text-[var(--brand-muted)]">Próximamente</span></li>)}
+            </ol>
+          </div>
+        </section>
 
-        {/* Roadmap de playbooks */}
-        <h3 style={{ fontSize: "1.2rem", margin: "18px 0 8px" }}>
-          Roadmap de playbooks
-        </h3>
-        <div
-          style={{
-            display: "flex",
-            gap: 10,
-            flexWrap: "wrap",
-            paddingBottom: 6,
-          }}
-        >
-          {[
-            "#2 Arquitectura mental",
-            "#3 Iteración inteligente",
-            "#4 Contexto y memoria",
-            "#5 Automatización flujo",
-            "#6 Aprendizaje continuo",
-            "#7 Balance y sostenibilidad",
-            "Conclusión",
-          ].map((label) => (
-            <div
-              key={label}
-              style={{
-                whiteSpace: "nowrap",
-                padding: "8px 12px",
-                borderRadius: 999,
-                border: "1px solid #113345",
-                background: "rgba(126,203,255,0.06)",
-                color: "#b6e6ff",
-                fontSize: 13,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                opacity: 0.9,
-                cursor: "default",
-              }}
-            >
-              <span>{label}</span>
-              <span style={{ fontSize: 12, color: "#7ecbff" }}>
-                Próximamente
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
+        <section className="site-container pb-24 lg:pb-32">
+          <div className="cta-panel relative overflow-hidden rounded-[1.6rem] border border-primary/40 px-7 py-14 sm:px-12 lg:px-16 lg:py-20">
+            <Compass className="absolute right-6 top-6 h-8 w-8 text-primary/70 sm:right-10 sm:top-10" aria-hidden="true" />
+            <p className="eyebrow"><span className="eyebrow-dot" /> CONVERSACIÓN TÉCNICA</p>
+            <h2 className="section-title mt-5 max-w-3xl">¿Hay una decisión que tu equipo necesita <em>hacer explícita?</em></h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--brand-muted)]">Conversemos sobre la arquitectura, el contexto o el siguiente experimento de producto.</p>
+            <Link href="/contact" className="brand-button brand-button-primary mt-9">Escribir a Andrés <Braces className="h-4 w-4" /></Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

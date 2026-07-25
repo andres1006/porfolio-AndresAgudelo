@@ -91,15 +91,13 @@ export default function Header() {
           : "bg-transparent"
       )}
     >
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold text-xl whitespace-nowrap">
-            AndrésAgudelo.dev
-          </span>
+      <div className="container grid h-16 grid-cols-[1fr_auto] items-center gap-3 lg:grid-cols-[1fr_auto_1fr]">
+        <Link href="/" className="inline-flex w-fit items-center text-[1.05rem] font-bold tracking-[-0.045em] text-foreground transition-colors hover:text-primary">
+          AndrésAgudelo<span className="text-primary">.dev</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-4">
+        {/* Desktop navigation stays centered independently from the logo and controls. */}
+        <nav className="hidden lg:flex items-center gap-1">
           {/* Principales items de navegación */}
           {mainNavItems.map((item) => (
             <Link
@@ -141,11 +139,14 @@ export default function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <ThemeToggle />
         </nav>
 
+        <div className="hidden justify-self-end lg:flex lg:items-center">
+          <ThemeToggle />
+        </div>
+
         {/* Mobile Menu Button */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center justify-self-end lg:hidden">
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -164,7 +165,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t">
+        <div className="lg:hidden border-t">
           <div className="container py-4 space-y-1">
             {allNavItems.map((item) => (
               <Link
