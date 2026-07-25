@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -73,6 +73,13 @@ const enter = {
 };
 
 export default function Home() {
+  const reduceMotion = useReducedMotion();
+  const revealTransition = (delay = 0) => ({
+    duration: reduceMotion ? 0 : 0.5,
+    ease: "easeOut",
+    delay: reduceMotion ? 0 : delay,
+  });
+
   return (
     <>
       <Header />
@@ -166,15 +173,15 @@ export default function Home() {
           </div>
 
           <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3">
-            {capabilities.map(({ number, icon: Icon, title, description }) => (
-              <article key={number} className="capability-card group bg-[#0B111D] p-7 sm:p-8">
+            {capabilities.map(({ number, icon: Icon, title, description }, index) => (
+              <motion.article key={number} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} transition={revealTransition(index * 0.08)} variants={enter} className="capability-card group bg-[#0B111D] p-7 sm:p-8">
                 <div className="flex items-start justify-between">
                   <span className="font-mono text-xs text-[#3E7BFA]">{number}</span>
                   <Icon className="h-5 w-5 text-[#B8C2D6] transition-colors group-hover:text-[#3E7BFA]" />
                 </div>
                 <h3 className="mt-14 text-2xl font-semibold tracking-tight text-white">{title}</h3>
                 <p className="mt-4 leading-relaxed text-[#B8C2D6]">{description}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </section>
@@ -191,11 +198,11 @@ export default function Home() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {principles.map((principle, index) => (
-                <div key={principle} className="principle-row">
+                <motion.div key={principle} initial={{ opacity: 0, x: reduceMotion ? 0 : -14 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={revealTransition(index * 0.08)} className="principle-row">
                   <span className="font-mono text-sm text-[#3E7BFA]">0{index + 1}</span>
                   <p>{principle}</p>
                   <CheckCircle2 className="h-4 w-4 text-[#3E7BFA]" aria-hidden="true" />
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -212,8 +219,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {projects.map((project) => (
-              <Link key={project.title} href={project.href} className="project-panel group">
+            {projects.map((project, index) => (
+              <motion.div key={project.title} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} transition={revealTransition(index * 0.1)} variants={enter}>
+              <Link href={project.href} className="project-panel group">
                 <span className="font-mono text-xs tracking-widest text-[#3E7BFA]">CASE / {project.code}</span>
                 <div className="mt-20 flex items-end justify-between gap-5">
                   <div>
@@ -224,6 +232,7 @@ export default function Home() {
                 </div>
                 <p className="mt-5 max-w-md leading-relaxed text-[#B8C2D6]">{project.description}</p>
               </Link>
+              </motion.div>
             ))}
           </div>
         </section>

@@ -113,9 +113,10 @@ export default function RootLayout({
       <body className={`${display.variable} ${body.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
+          storageKey="andres-agudelo-theme"
         >
           <RouteLoader />
           <div className="flex min-h-screen flex-col">
