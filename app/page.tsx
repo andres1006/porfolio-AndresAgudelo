@@ -123,25 +123,26 @@ export default function Home() {
                       : "opacity-0"
                   }`}
                 >
-                  Desarrollador Frontend & Especialista en Soluciones
-                  Tecnológicas
+                  AI Builder · Sistemas de producto y arquitectura de software
                 </p>
                 <p className="text-lg text-muted-foreground mb-8 max-w-lg">
-                  Especializado en crear interfaces de usuario atractivas con
-                  React, Next.js y React Native. Experiencia en desarrollo de
-                  sistemas para el sector salud y optimización de aplicaciones
-                  web y móviles con enfoque en UX/UI.
+                  Ayudo a equipos y founders a convertir problemas complejos en
+                  productos escalables: agentes de IA, desarrollo guiado por
+                  especificaciones y arquitectura limpia. El frontend es la
+                  capa donde esas ideas se convierten en experiencias reales.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild variant="outline" size="lg">
-                    <Link href="/contact">Contactar</Link>
+                    <Link href="/contact">Hablemos de tu sistema</Link>
                   </Button>
                   <Button
                     asChild
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30"
                   >
-                    <Link href="/mas-alla-del-codigo">Más allá del código</Link>
+                    <Link href="/mas-alla-del-codigo">
+                      Explorar los playbooks
+                    </Link>
                   </Button>
                 </div>
               </motion.div>
@@ -190,11 +191,11 @@ export default function Home() {
           <div className="container">
             <ScrollReveal variant="fade" direction="up">
               <h2 className="text-3xl font-bold mb-4  text-center">
-                Mis Servicios
+                Cómo puedo aportar
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-12">
-                Servicios especializados para satisfacer tus necesidades de
-                desarrollo web y diseño
+                Sistemas de producto que unen estrategia, IA y ejecución
+                técnica; el frontend es una parte del resultado, no el límite.
               </p>
             </ScrollReveal>
 
@@ -202,15 +203,21 @@ export default function Home() {
               {[
                 {
                   icon: <Code className="h-10 w-10 mb-4" />,
-                  title: "Desarrollo Frontend",
+                  title: "Agentes y flujos con IA",
                   description:
-                    "Creación de interfaces modernas y responsivas utilizando React, Next.js, Astro y las mejores prácticas de desarrollo.",
+                    "Diseño de agentes y automatizaciones con contexto, criterios de calidad y supervisión humana para acelerar trabajo real.",
+                },
+                {
+                  icon: <Briefcase className="h-10 w-10 mb-4" />,
+                  title: "Arquitectura y producto",
+                  description:
+                    "Decisiones técnicas claras, SDD y Clean Architecture para crear productos mantenibles que pueden evolucionar.",
                 },
                 {
                   icon: <User className="h-10 w-10 mb-4" />,
-                  title: "Landing Pages Optimizadas",
+                  title: "Frontend que entrega valor",
                   description:
-                    "Diseño y desarrollo de landing pages de alto rendimiento con Astro, optimizadas para SEO y conversión.",
+                    "Interfaces rápidas y útiles con React, Next.js y TypeScript, conectadas a una estrategia de producto y no solo a una pantalla.",
                 },
               ].map((service, index) => (
                 <ScrollReveal
@@ -257,7 +264,8 @@ export default function Home() {
                 Proyectos Destacados
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-12">
-                Una selección de mis trabajos más relevantes
+                Sistemas, productos e interfaces construidos para resolver
+                problemas reales
               </p>
             </ScrollReveal>
 
@@ -505,8 +513,8 @@ export default function Home() {
                   ¿Trabajamos Juntos?
                 </h2>
                 <p className="text-xl opacity-90 mb-8 text-primary-foreground">
-                  ¿Tienes un proyecto en mente? Contáctame para discutir cómo
-                  puedo ayudarte.
+                  Si estás construyendo un producto, modernizando un sistema o
+                  explorando IA aplicada, conversemos sobre el siguiente paso.
                 </p>
                 <Button
                   asChild

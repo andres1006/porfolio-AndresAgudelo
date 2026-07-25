@@ -288,7 +288,7 @@ export default function MasAllaDelCodigo() {
           <p
             style={{ margin: "4px 0 0", fontSize: "0.95rem", color: "#b6e6ff" }}
           >
-            Playbooks para desarrolladores
+            Playbooks de IA, sistemas y construcción de producto
           </p>
         </motion.section>
 
@@ -301,7 +301,7 @@ export default function MasAllaDelCodigo() {
             marginBottom: 12,
           }}
         >
-          Los 7 Playbooks Estratégicos
+          Biblioteca de playbooks prácticos
         </motion.h2>
 
         <motion.p
@@ -316,10 +316,9 @@ export default function MasAllaDelCodigo() {
             textAlign: "justify",
           }}
         >
-          El desarrollo de software ha entrado en una nueva era. La inteligencia
-          artificial no es solo una herramienta más en nuestro arsenal; es un
-          amplificador de capacidades que puede multiplicar nuestra
-          productividad por 10x si sabemos cómo utilizarla correctamente.
+          Una biblioteca para desarrolladores, CTOs y founders que quieren usar
+          IA con criterio: mejor contexto, decisiones de arquitectura más
+          claras y ciclos de producto más confiables.
         </motion.p>
 
         {/* Métricas compactas */}
@@ -332,10 +331,10 @@ export default function MasAllaDelCodigo() {
           }}
         >
           {[
-            { title: "Tiempo", desc: "-25% en tareas estándar" },
-            { title: "Calidad", desc: "Menos bugs, mejor arquitectura" },
-            { title: "Aprendizaje", desc: "+ habilidades cada sprint" },
-            { title: "Balance", desc: "Productividad sin burnout" },
+            { title: "Contexto", desc: "Problemas mejor definidos" },
+            { title: "Calidad", desc: "Decisiones y arquitectura explícitas" },
+            { title: "Iteración", desc: "Aprendizaje en ciclos cortos" },
+            { title: "Producto", desc: "Tecnología conectada al valor" },
           ].map((item) => (
             <div
               key={item.title}
@@ -378,7 +377,7 @@ export default function MasAllaDelCodigo() {
           }}
         >
           <span style={{ fontSize: "1.05rem", fontWeight: 600 }}>
-            Introducción: La nueva era del desarrollo
+            Introducción: IA con criterio de ingeniería
           </span>
           <span style={{ color: "#b6e6ff", fontSize: 12 }}>
             {showIntro ? "Ocultar" : "Ver más"}
@@ -402,9 +401,10 @@ export default function MasAllaDelCodigo() {
               }}
             >
               <p style={{ marginBottom: 12, textAlign: "justify" }}>
-                Antes, el valor de un desarrollador se medía principalmente por
-                su capacidad de escribir código desde cero. Hoy, el verdadero
-                valor radica en:
+                El valor no está en generar más líneas de código, sino en tomar
+                mejores decisiones para el producto. La IA acelera el trabajo
+                cuando existe contexto, criterios de calidad y responsabilidad
+                técnica.
               </p>
               <ul style={{ paddingLeft: 20, marginBottom: 16 }}>
                 <li>
@@ -425,11 +425,9 @@ export default function MasAllaDelCodigo() {
                 </li>
               </ul>
               <p style={{ marginBottom: 12, textAlign: "justify" }}>
-                Este no es otro tutorial sobre cómo usar ChatGPT o Copilot. Es
-                un sistema completo que transforma tu forma de trabajar, pensar
-                y crecer como desarrollador. Cada paso está diseñado para
-                construir sobre el anterior, creando un ciclo virtuoso de mejora
-                continua.
+                Esta no es una colección de prompts. Es una biblioteca de
+                marcos prácticos para conectar IA, arquitectura y producto sin
+                delegar el criterio de ingeniería.
               </p>
             </motion.div>
           )}
@@ -457,7 +455,7 @@ export default function MasAllaDelCodigo() {
           }}
         >
           <span style={{ fontSize: "1.05rem", fontWeight: 600 }}>
-            Objetivo del lanzamiento
+            Objetivo de la biblioteca
           </span>
           <span style={{ color: "#b6e6ff", fontSize: 12 }}>
             {showObjetivo ? "Ocultar" : "Ver más"}
@@ -481,13 +479,13 @@ export default function MasAllaDelCodigo() {
               }}
             >
               <ul style={{ paddingLeft: 20, margin: 0 }}>
-                <li>Compartir la visión y fundamentos del sistema.</li>
+                <li>Compartir fundamentos para construir con IA de forma responsable.</li>
                 <li>
                   Dar acceso al{" "}
                   <strong>Playbook #1: Comunicación Efectiva con IA</strong>.
                 </li>
                 <li>
-                  Definir métricas para medir impacto real en el trabajo diario.
+                  Conectar experimentación técnica con resultados de producto.
                 </li>
               </ul>
             </motion.div>
@@ -574,8 +572,8 @@ export default function MasAllaDelCodigo() {
                   fontSize: "clamp(0.92rem, 2.3vw, 1rem)",
                 }}
               >
-                Entiende LLMs, MLMs, sus usos, limitaciones y configuración
-                inicial para potenciar tu workflow con IA.
+                Entiende LLMs, sus usos, limitaciones y una base para integrar
+                IA en tu flujo de trabajo con criterio.
               </p>
               <span
                 style={{
@@ -704,7 +702,7 @@ export default function MasAllaDelCodigo() {
 
         {/* Roadmap de playbooks */}
         <h3 style={{ fontSize: "1.2rem", margin: "18px 0 8px" }}>
-          Roadmap de playbooks
+          Roadmap de la biblioteca
         </h3>
         <div
           style={{
@@ -715,12 +713,12 @@ export default function MasAllaDelCodigo() {
           }}
         >
           {[
-            "#2 Arquitectura mental",
-            "#3 Iteración inteligente",
-            "#4 Contexto y memoria",
-            "#5 Automatización flujo",
-            "#6 Aprendizaje continuo",
-            "#7 Balance y sostenibilidad",
+            "#2 Contexto y especificaciones",
+            "#3 Arquitectura para agentes",
+            "#4 Iteración y evaluación",
+            "#5 Automatización con supervisión",
+            "#6 Clean Architecture aplicada",
+            "#7 Construir en público",
             "Conclusión",
           ].map((label) => (
             <div

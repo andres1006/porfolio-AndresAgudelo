@@ -11,13 +11,17 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://andres-agudelo.dev"),
   title: {
-    default: "Andrés Agudelo | Desarrollador Frontend",
+    default: "Andrés Agudelo | AI Builder",
     template: "%s | Andrés Agudelo",
   },
   description:
-    "Desarrollador Frontend especializado en React, Next.js y React Native. Experto en crear experiencias de usuario excepcionales y soluciones web robustas.",
+    "AI Builder y desarrollador de producto. Diseño agentes de IA, sistemas escalables y experiencias frontend con SDD y Clean Architecture.",
   keywords: [
-    "Desarrollador Frontend",
+    "AI Builder",
+    "Agentes de IA",
+    "Arquitectura de software",
+    "Clean Architecture",
+    "Spec-Driven Development",
     "React",
     "Next.js",
     "React Native",
@@ -47,24 +51,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CO",
     url: "https://andres-agudelo.dev",
-    siteName: "Andrés Agudelo - Desarrollador Frontend",
-    title: "Andrés Agudelo | Desarrollador Frontend",
+    siteName: "Andrés Agudelo - AI Builder",
+    title: "Andrés Agudelo | AI Builder",
     description:
-      "Desarrollador Frontend especializado en React, Next.js y React Native. Experto en crear experiencias de usuario excepcionales.",
+      "Agentes de IA, sistemas de producto y arquitectura de software para construir productos escalables.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Andrés Agudelo - Desarrollador Frontend",
+        alt: "Andrés Agudelo - AI Builder",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andrés Agudelo | Desarrollador Frontend",
+    title: "Andrés Agudelo | AI Builder",
     description:
-      "Desarrollador Frontend especializado en React, Next.js y React Native. Experto en crear experiencias de usuario excepcionales.",
+      "Agentes de IA, sistemas de producto y arquitectura de software para construir productos escalables.",
     images: ["/og-image.jpg"],
   },
   verification: {
