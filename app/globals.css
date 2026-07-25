@@ -38,7 +38,7 @@
 }
 
 .site-shell { background: #0B111D; }
-.site-container { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
+.site-container, .container { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
 
 .hero-grid {
   background-color: #0B111D;

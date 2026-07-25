@@ -126,9 +126,9 @@ export default function Home() {
                   fill
                   priority
                   sizes="(max-width: 1024px) 88vw, 470px"
-                  className="object-cover object-[50%_30%]"
+                  className="object-cover object-[50%_30%] brightness-125 contrast-105"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,17,29,0.08)_20%,rgba(11,17,29,0.18)_46%,rgba(11,17,29,0.9)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,17,29,0.01)_25%,rgba(11,17,29,0.04)_48%,rgba(11,17,29,0.72)_100%)]" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                   <p className="text-xs font-semibold tracking-[0.17em] text-[#B8C2D6]">TRABAJO EN PÚBLICO</p>
                   <p className="mt-2 max-w-xs text-lg leading-snug text-white">Del criterio técnico a productos que el equipo puede sostener.</p>
