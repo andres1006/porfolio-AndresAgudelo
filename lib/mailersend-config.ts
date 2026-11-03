@@ -8,10 +8,10 @@
  */
 
 // API key de MailerSend
-export const MAILERSEND_API_KEY = 'mlsn.4bf62ca1ed500ce2d76794c8e907b7e21041d2892080c9dd25ae35f9d07e0905';
+export const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY ?? '';
 
 // Email de remitente verificado en MailerSend
-export const SENDER_EMAIL = 'no-reply@trial-z86org8pjknlew13.mlsender.net';
+export const SENDER_EMAIL = process.env.MAILERSEND_SENDER_EMAIL ?? 'no-reply@trial-z86org8pjknlew13.mlsender.net';
 
 // Nombre del remitente
 export const SENDER_NAME = 'Andrés Agudelo';

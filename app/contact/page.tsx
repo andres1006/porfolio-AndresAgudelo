@@ -27,7 +27,7 @@ import {
   EMAILJS_TEMPLATE_ID,
   EMAILJS_PUBLIC_KEY,
 } from "@/lib/emailjs-config";
-import { track } from "@/lib/analytics";
+import { leerUtm, track } from "@/lib/analytics";
 import { OFERTAS, OfertaId, RESPUESTAS_KEY, resumenRespuestas } from "@/lib/precalificacion";
 
 const formSchema = z.object({
@@ -50,6 +50,7 @@ const formSchema = z.object({
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [empresa, setEmpresa] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -84,7 +85,13 @@ export default function ContactPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: values.name, email: values.email, subject: values.subject, message: values.message }),
+      body: JSON.stringify({
+        ...values,
+        empresa,
+        oferta: new URLSearchParams(window.location.search).get("servicio") ?? undefined,
+        origen: window.location.pathname,
+        utm: leerUtm(),
+      }),
     })
       .then(async (response) => {
         const data = await response.json();
@@ -179,6 +186,16 @@ export default function ContactPage() {
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-6"
                 >
+                  <input
+                    type="text"
+                    name="empresa"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0"
+                    value={empresa}
+                    onChange={(e) => setEmpresa(e.target.value)}
+                  />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
@@ -299,13 +316,13 @@ export default function ContactPage() {
                   {
                     question: "¿Qué servicios ofreces?",
                     answer:
-                      "Ofrezco servicios de desarrollo frontend, diseño UI/UX, consultoría técnica y desarrollo de aplicaciones web y móviles con React y React Native.",
+                      "Ayudo a dueños de negocio a encontrar qué automatizar con el Diagnóstico. Después construyo automatizaciones y productos con IA, y hago consultoría técnica para equipos.",
                   },
                   {
                     question:
                       "¿Cuál es tu tiempo típico de entrega para un proyecto?",
                     answer:
-                      "Los tiempos varían según el alcance y la complejidad. Un sitio web simple puede tomar 2-4 semanas, mientras que una aplicación compleja podría llevar varios meses.",
+                      "Depende del alcance. Lo definimos en el Diagnóstico o en la propuesta, antes de empezar.",
                   },
                   {
                     question: "¿Trabajas con clientes internacionales?",
@@ -315,7 +332,7 @@ export default function ContactPage() {
                   {
                     question: "¿Cuál es tu estructura de precios?",
                     answer:
-                      "Ofrezco opciones de precios basados en proyectos y por hora. Cada proyecto se cotiza individualmente según los requisitos y el alcance.",
+                      "El Diagnóstico cuesta USD 160 y es acreditable. Los demás servicios dependen del alcance, y el precio se acuerda antes de empezar.",
                   },
                 ].map((faq, index) => (
                   <ScrollReveal

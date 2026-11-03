@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Script from "next/script";
+import { guardarUtm } from "@/lib/analytics";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const CLAVE = "medicion-consentimiento";
@@ -18,6 +19,7 @@ export default function AnalyticsConsent() {
   const [estado, setEstado] = useState<string | null | undefined>(undefined);
 
   useEffect(() => setEstado(leer()), []);
+  useEffect(() => guardarUtm(), []);
 
   if (!GTM_ID || !/^GTM-[A-Z0-9]+$/.test(GTM_ID) || estado === undefined) return null;
 
