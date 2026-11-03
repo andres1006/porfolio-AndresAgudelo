@@ -2,7 +2,7 @@
 
 ## Brand alignment
 
-This website represents Andrés Agudelo as an **AI Builder & Founder**. Its primary audience is developers, CTOs and technical founders in LATAM. Frontend capability is evidence of execution, not the primary promise.
+This website represents Andrés Agudelo as an **AI Builder & Founder**. Its primary audience is non-technical SME owners, entrepreneurs and creators in LATAM; technical teams are secondary (see `marca/00-Identidad/Manual_de_Marca.md` in the brand repo). Frontend capability is evidence of execution, not the primary promise.
 
 ## Rules
 
