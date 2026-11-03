@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -27,8 +27,13 @@ import {
   EMAILJS_TEMPLATE_ID,
   EMAILJS_PUBLIC_KEY,
 } from "@/lib/emailjs-config";
+import { track } from "@/lib/analytics";
+import { OFERTAS, OfertaId, RESPUESTAS_KEY, resumenRespuestas } from "@/lib/precalificacion";
 
 const formSchema = z.object({
+  autorizacion: z.literal(true, {
+    errorMap: () => ({ message: "Necesito tu autorización para responderte." }),
+  }),
   name: z
     .string()
     .min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
@@ -53,11 +58,25 @@ export default function ContactPage() {
       email: "",
       subject: "",
       message: "",
+      autorizacion: false as unknown as true,
     },
   });
 
+  useEffect(() => {
+    const servicio = new URLSearchParams(window.location.search).get("servicio") as OfertaId | null;
+    if (!servicio || !OFERTAS[servicio]) return;
+    form.setValue("subject", `Quiero hablar de: ${OFERTAS[servicio].nombre}`);
+    try {
+      const guardadas = sessionStorage.getItem(RESPUESTAS_KEY);
+      if (guardadas) form.setValue("message", resumenRespuestas(JSON.parse(guardadas)));
+    } catch {
+      // Sin respuestas guardadas, la persona escribe su mensaje.
+    }
+  }, [form]);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
+    track("form_submit", { servicio: new URLSearchParams(window.location.search).get("servicio") ?? "general" });
 
     // Enviar correo electrónico usando la API
     fetch("/api/contact", {
@@ -65,7 +84,7 @@ export default function ContactPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ name: values.name, email: values.email, subject: values.subject, message: values.message }),
     })
       .then(async (response) => {
         const data = await response.json();
@@ -217,6 +236,24 @@ export default function ContactPage() {
                             {...field}
                           />
                         </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="autorizacion"
+                    render={({ field }) => (
+                      <FormItem>
+                        <label className="flex items-start gap-3 text-sm text-muted-foreground">
+                          <input
+                            type="checkbox"
+                            className="mt-1 h-4 w-4 accent-[#3E7BFA]"
+                            checked={Boolean(field.value)}
+                            onChange={(e) => field.onChange(e.target.checked)}
+                          />
+                          Autorizo a Andrés Agudelo a usar mis datos para responder esta solicitud.
+                        </label>
                         <FormMessage />
                       </FormItem>
                     )}

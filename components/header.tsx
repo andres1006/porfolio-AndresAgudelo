@@ -16,6 +16,7 @@ import {
   FileText,
   Mail,
   ChevronDown,
+  Compass,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -27,6 +28,11 @@ import {
 // Todos los items de navegación
 const allNavItems = [
   { name: "Inicio", path: "/", icon: <Home className="h-4 w-4 mr-2" /> },
+  {
+    name: "Diagnóstico",
+    path: "/diagnostico",
+    icon: <Compass className="h-4 w-4 mr-2" />,
+  },
   {
     name: "Más allá del código",
     path: "/mas-alla-del-codigo",
@@ -60,6 +66,7 @@ const allNavItems = [
 const mainNavItems = [
   { name: "Inicio", path: "/" },
   { name: "Más allá del código", path: "/mas-alla-del-codigo" },
+  { name: "Diagnóstico", path: "/diagnostico" },
   { name: "Proyectos", path: "/projects" },
   { name: "Contacto", path: "/contact" },
 ];

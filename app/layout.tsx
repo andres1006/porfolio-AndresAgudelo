@@ -1,12 +1,14 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Archivo_Black, DM_Sans } from "next/font/google";
+import { Archivo_Black, DM_Sans, Instrument_Serif } from "next/font/google";
+import AnalyticsConsent from "@/components/analytics-consent";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { RouteLoader } from "@/components/route-loader";
 import { FloatingWhatsAppButton } from "@/components/ui/floating-whatsapp-button";
 
 const display = Archivo_Black({ subsets: ["latin"], weight: "400", variable: "--font-display" });
+const accent = Instrument_Serif({ subsets: ["latin"], weight: "400", style: "italic", variable: "--font-accent", display: "swap" });
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Andrés Agudelo",
   },
   description:
-    "AI Builder y desarrollador de producto. Diseño agentes de IA, sistemas escalables y experiencias frontend con SDD y Clean Architecture.",
+    "Te ayudo a quitarle trabajo repetitivo a tu negocio con IA y agentes, usando sistemas que yo mismo construyo. Diagnóstico, Quick Win y consultoría técnica en LATAM.",
   keywords: [
     "AI Builder",
     "Agentes de IA",
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
     siteName: "Andrés Agudelo - AI Builder",
     title: "Andrés Agudelo | AI Builder",
     description:
-      "Agentes de IA, sistemas de producto y arquitectura de software para construir productos escalables.",
+      "IA y agentes para quitarle trabajo repetitivo a tu negocio, con sistemas que yo mismo construyo.",
     images: [
       {
         url: "/og-image.jpg",
@@ -110,7 +112,7 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
       </head>
-      <body className={`${display.variable} ${body.variable}`}>
+      <body className={`${display.variable} ${body.variable} ${accent.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -123,6 +125,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
           </div>
           <Toaster />
+          <AnalyticsConsent />
           <FloatingWhatsAppButton />
         </ThemeProvider>
       </body>
