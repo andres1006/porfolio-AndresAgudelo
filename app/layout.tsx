@@ -12,7 +12,7 @@ const accent = Instrument_Serif({ subsets: ["latin"], weight: "400", style: "ita
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://andres-agudelo.dev"),
+  metadataBase: new URL("https://www.andres-agudelo.dev"),
   title: {
     default: "Andrés Agudelo | AI Builder",
     template: "%s | Andrés Agudelo",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_CO",
-    url: "https://andres-agudelo.dev",
+    url: "https://www.andres-agudelo.dev",
     siteName: "Andrés Agudelo - AI Builder",
     title: "Andrés Agudelo | AI Builder",
     description:
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     google: "tu-codigo-de-verificacion-de-google", // Necesitarás agregar tu código de verificación de Google Search Console
   },
   alternates: {
-    canonical: "https://andres-agudelo.dev",
+    canonical: "https://www.andres-agudelo.dev",
   },
 };
 

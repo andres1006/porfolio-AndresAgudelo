@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     title: "Sobre Andrés Agudelo | Desarrollador Frontend",
     description:
       "Conoce más sobre mi trayectoria profesional, habilidades técnicas y pasión por el desarrollo frontend.",
+    // El openGraph de una página reemplaza al del layout: sin esto /about se comparte sin imagen.
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Andrés Agudelo - AI Builder" }],
   },
 };
 
