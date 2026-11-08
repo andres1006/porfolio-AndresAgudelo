@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Archivo_Black, DM_Sans, Instrument_Serif } from "next/font/google";
 import AnalyticsConsent from "@/components/analytics-consent";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { RouteLoader } from "@/components/route-loader";
@@ -126,6 +127,7 @@ export default function RootLayout({
           </div>
           <Toaster />
           <AnalyticsConsent />
+          <Analytics />
           <FloatingWhatsAppButton />
         </ThemeProvider>
       </body>
